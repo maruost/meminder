@@ -1,0 +1,8 @@
+.carousel {
+  max-width: 260px;
+  width: 80vw;
+  height: 300px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+}
