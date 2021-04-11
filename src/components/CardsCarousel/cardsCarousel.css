@@ -6,3 +6,22 @@
   box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.1);
   background-color: transparent;
 }
+
+.carousel__button {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+}
+
+.carousel__button.carousel__button_active {
+  opacity: 1;
+}
+
+.carousel__button.carousel__button_inactive {
+  display: none;
+}
+
+.carousel__button-icon {
+  width: 15px;
+  height: 15px;
+}

@@ -1,8 +1,14 @@
 import "./App.css";
 import { React, useState, useMemo, createRef } from "react";
-import { Link, Switch } from "react-router-dom";
+import { Link, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
+import WelcomeBoard from "./components/WelcomeBoard/WelcomeBoard";
+import Registration from "./components/Registration/Registration";
+import { Step1 } from "./components/Step1";
+import { Step2 } from "./components/Step2";
+import { Result } from "./components/Result";
 
 const db = [
   {
@@ -64,14 +70,26 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Main
-        people={people}
-        lastDirection={lastDirection}
-        onSwiped={swiped}
-        onSwipe={swipe}
-        onOutOfFrame={outOfFrame}
-        childRefs={childRefs}
-      />
+      <Switch>
+        <Route exact path="/">
+          <WelcomeBoard />
+        </Route>
+        <Route exact path="/meminder">
+          ,
+          <Main
+            people={people}
+            lastDirection={lastDirection}
+            onSwiped={swiped}
+            onSwipe={swipe}
+            onOutOfFrame={outOfFrame}
+            childRefs={childRefs}
+          />
+        </Route>
+        <Route exact path="/registration">
+            <Registration />
+        </Route>
+        <Route exact path="/result" component={Result}></Route>
+      </Switch>
     </div>
   );
 }

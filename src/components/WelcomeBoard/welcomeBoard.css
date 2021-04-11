@@ -1,0 +1,17 @@
+.welcomeBoard {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  max-width: 680px;
+  margin: 20px auto;
+}
+
+.welcomeBoard__title {
+    text-align: justify;
+  }
+  
+
+.welcomeBoard__about {
+  text-align: justify;
+}
