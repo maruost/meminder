@@ -23,7 +23,7 @@ function DropZone({ name, setFieldValue, values, ...props }) {
           <Paper variant="outlined" {...getRootProps()}>
             <CloudUpload />
             <input {...getInputProps()} name="files" />
-            <p>Drag 'n' drop files here, or click to select files</p>
+            <p>Перетащи изображения сюда, или нажми, чтобы выбрать файлы</p>
           </Paper>
         )}
       </Dropzone>

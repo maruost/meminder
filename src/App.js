@@ -10,6 +10,10 @@ import { Step1 } from "./components/Step1";
 import { Step2 } from "./components/Step2";
 import { Result } from "./components/Result";
 import Step3 from "./components/Step3";
+import Chats from "./components/Chats/Chats";
+import Profile from "./components/Profile/Profile";
+import Chat from "./components/Chat/Chat";
+import ChatScreen from "./components/ChatScreen/ChatScreen";
 
 const db = [
   {
@@ -70,13 +74,13 @@ function App() {
   };
   return (
     <div className="App">
-      <Header />
       <Switch>
-        <Route exact path="/">
+        <Route exact path="/welcome-board">
+          <Header />
           <WelcomeBoard />
         </Route>
-        <Route exact path="/meminder">
-          ,
+        <Route exact path="/">
+          <Header />
           <Main
             people={people}
             lastDirection={lastDirection}
@@ -85,6 +89,18 @@ function App() {
             onOutOfFrame={outOfFrame}
             childRefs={childRefs}
           />
+        </Route>
+        <Route exact path="/chats/:person">
+          <Header backButton="/chats" />
+          <ChatScreen />
+        </Route>
+        <Route exact path="/chats">
+          <Header backButton="/" />
+          <Chats />
+        </Route>
+        <Route exact path="/profile">
+          <Header backButton="/" />
+          <Profile />
         </Route>
         <Route exact path="/registration">
           <Registration />
