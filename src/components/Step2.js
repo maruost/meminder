@@ -1,7 +1,6 @@
 import {
   Typography,
   FormControlLabel,
-  Checkbox,
   TextField,
   FormControl,
   FormLabel,
@@ -16,115 +15,110 @@ import { Input } from "./Input";
 import { MainContainer } from "./MainContainer";
 import { useForm } from "react-hook-form";
 import { PrimaryButton } from "./PrimaryButton";
-import * as Joi from "joi";
-import { joiResolver } from "@hookform/resolvers/joi";
 import { useHistory } from "react-router-dom";
 import { useData } from "./DataContex";
+import * as yup from "yup";
+import { useFormik } from "formik";
+import moment from "moment";
 
-const schema = Joi.object({
-  firstName: Joi.string()
-    .pattern(/^([^0-9]*)$/)
-    .required()
-    .messages({
-      "string.empty": `Поле "Имя" должно быть обязательно заполнено`,
-    }),
-  lastName: Joi.string()
-    .pattern(/^([^0-9]*)$/)
-    .required()
-    .messages({
-      "string.empty": `Поле "Фамилия" должно быть обязательно заполнено`,
-    }),
-}).unknown();
+let schema = yup.object().shape({
+  firstName: yup
+    .string()
+    .min(2, "Минимум 2 символа")
+    .required("Поле обязательно должно быть заполнено"),
+  lastName: yup
+    .string()
+    .min(2, "Минимум 2 символа")
+    .required("Поле обязательно должно быть заполнено"),
+  date: yup
+    .string()
+    .required("Пожалуйста, укажи дату рождения")
+    .test(
+      "DOB",
+      "Чтобы пользоваться приложением тебе должно быть не меньше 18 лет",
+      (value) => {
+        return moment().diff(moment(value), "years") >= 18;
+      }
+    ),
+  gender: yup.string().required(),
+  searchingGender: yup.string().required(),
+});
 
 export const Step2 = ({ ...props }) => {
   const history = useHistory();
   // const { data, setValues } = useData();
-  const [gender, setGender] = useState();
-  const [searchingGender, setSearchingGender] = useState();
-  const [locationState, setLocationState] = useState({
-    locationToFind: false,
+
+  const formik = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      date: "",
+      gender: "",
+      searchingGender: "",
+      location: "",
+      locationToFind: false,
+      about: "",
+    },
+    validationSchema: schema,
+    onSubmit: (data) => {
+      history.push("/step3");
+      // setValues(data);
+    },
   });
 
-  const handleLocationChange = (event) => {
-    setLocationState({ [event.target.name]: event.target.checked });
-  };
-
-  const handleGenderChange = (e) => {
-    setGender(e.target.value);
-  };
-
-  const handleSearchingGenderChange = (e) => {
-    setSearchingGender(e.target.value);
-  };
-
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-    formState,
-  } = useForm({
-    // defaultValues: {
-    //   email: data.email,
-    //   hasPhone: data.hasPhone,
-    //   phoneNumber: data.phoneNumber,
-    // },
-    mode: "onChange",
-    resolver: joiResolver(schema),
-  });
-
-  const { isValid } = formState;
-  const hasPhone = watch("hasPhone");
-
-  const onSubmit = (data) => {
-    history.push("/result");
-    if (!hasPhone) data.phoneNumber = null;
-    // setValues(data);
-  };
   return (
     <MainContainer {...props}>
-      <Typography component="h5" variant="p">
+      <Typography component="h5" variant="subtitle1">
         Шаг 2: Расскажи немного о себе
       </Typography>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form onSubmit={formik.handleSubmit}>
         <Input
-          {...register("firstName")}
           id="firstName"
           type="text"
           label="Имя"
           name="firstName"
-          error={!!errors.firstName}
-          helperText={errors?.firstName?.message}
+          value={formik.values.firstName}
+          onChange={formik.handleChange}
+          required
+          error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+          helperText={formik.touched.firstName && formik.errors.firstName}
         />
         <Input
-          {...register("lastName")}
           id="lastName"
           type="text"
           label="Фамилия"
           name="lastName"
-          error={!!errors.lastName}
-          helperText={errors?.lastName?.message}
+          value={formik.values.lastName}
+          onChange={formik.handleChange}
+          required
+          error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+          helperText={formik.touched.lastName && formik.errors.lastName}
         />
-        <TextField
+        <Input
           id="date"
-          {...register("date")}
           label="Дата рождения"
           type="date"
           name="date"
           InputLabelProps={{
             shrink: true,
           }}
-          error={!!errors.date}
-          helperText={errors?.date?.message}
+          value={formik.values.date}
+          onChange={formik.handleChange}
+          required
+          error={formik.touched.date && Boolean(formik.errors.date)}
+          helperText={formik.touched.date && formik.errors.date}
         />
         <FormControl component="fieldset">
           <FormLabel component="legend">Твой пол</FormLabel>
           <RadioGroup
             row
             aria-label="gender"
-            name="gender1"
-            value={gender}
-            onChange={handleGenderChange}
+            name="gender"
+            value={formik.values.gender || ""}
+            onChange={formik.handleChange}
+            required
+            error={formik.touched.gender && Boolean(formik.errors.gender)}
+            helperText={formik.touched.gender && formik.errors.gender}
           >
             <FormControlLabel
               value="female"
@@ -147,10 +141,18 @@ export const Step2 = ({ ...props }) => {
           <FormLabel component="legend">Кого ты ищещь?</FormLabel>
           <RadioGroup
             row
-            aria-label="gender"
-            name="gender1"
-            value={searchingGender}
-            onChange={handleSearchingGenderChange}
+            aria-label="searchingGender"
+            name="searchingGender"
+            value={formik.values.searchingGender}
+            onChange={formik.handleChange}
+            required
+            error={
+              formik.touched.searchingGender &&
+              Boolean(formik.errors.searchingGender)
+            }
+            helperText={
+              formik.touched.searchingGender && formik.errors.searchingGender
+            }
           >
             <FormControlLabel
               value="female"
@@ -167,23 +169,36 @@ export const Step2 = ({ ...props }) => {
               control={<Radio />}
               label="Другое"
             />
+            <FormControlLabel value="all" control={<Radio />} label="Любой" />
           </RadioGroup>
         </FormControl>
         <Input
-          {...register("location")}
           id="location"
           type="text"
           label="Город"
           name="location"
-          error={!!errors.location}
-          helperText={errors?.location?.message}
+          value={formik.values.location}
+          onChange={formik.handleChange}
+          error={formik.touched.location && Boolean(formik.errors.location)}
+          helperText={formik.touched.location && formik.errors.location}
         />
         <FormControlLabel
           control={
             <Switch
-              checked={locationState.locationToFind}
-              onChange={handleLocationChange}
+              checked={
+                formik.values.location ? formik.values.locationToFind : null
+              }
               name="locationToFind"
+              value={formik.values.locationToFind}
+              onChange={formik.handleChange}
+              error={
+                formik.touched.locationToFind &&
+                Boolean(formik.errors.locationToFind)
+              }
+              helperText={
+                formik.touched.locationToFind && formik.errors.locationToFind
+              }
+              disabled={formik.values.location ? false : true}
             />
           }
           label="Ты хочешь найти пару в твоём городе?"
@@ -191,9 +206,14 @@ export const Step2 = ({ ...props }) => {
         <TextareaAutosize
           aria-label="empty textarea"
           placeholder="Здесь можешь написать немного о себе"
+          name="about"
           rowsMax={8}
+          value={formik.values.about}
+          onChange={formik.handleChange}
         />
-        <PrimaryButton disabled={!isValid}>Дальше</PrimaryButton>
+        <PrimaryButton color={!formik.isValid ? "default" : "primary"}>
+          Дальше
+        </PrimaryButton>
         <PrimaryButton
           color="default"
           type="button"

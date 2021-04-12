@@ -14,11 +14,9 @@ function Registration() {
       </h2>
       <Switch>
         <Route exact path={path}>
-          <Step1 url={url} />
+          <Step1 />
         </Route>
-        <Route exact path="/step2">
-          <Step2 />
-        </Route>
+       
       </Switch>
     </div>
   );

@@ -9,6 +9,7 @@ import Registration from "./components/Registration/Registration";
 import { Step1 } from "./components/Step1";
 import { Step2 } from "./components/Step2";
 import { Result } from "./components/Result";
+import Step3 from "./components/Step3";
 
 const db = [
   {
@@ -86,9 +87,11 @@ function App() {
           />
         </Route>
         <Route exact path="/registration">
-            <Registration />
+          <Registration />
         </Route>
         <Route exact path="/result" component={Result}></Route>
+        <Route exact path={"/step2"} component={Step2} />
+        <Route exact path={"/step3"} component={Step3} />
       </Switch>
     </div>
   );
