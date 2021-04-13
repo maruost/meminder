@@ -16,13 +16,15 @@ function Header({ backButton, ...props }) {
           </IconButton>
         </Link>
       ) : (
-        <Link to={backButton}>
+        <Link to={"/profile"}>
           <IconButton>
             <Person />
           </IconButton>
         </Link>
       )}
-      <img className="header__icon" src={logo} alt="meminder icon" />
+      <Link to="/">
+        <img className="header__icon" src={logo} alt="meminder icon" />
+      </Link>
       <Link to="/chats">
         <IconButton>
           <Forum />

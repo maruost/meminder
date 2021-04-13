@@ -1,0 +1,7 @@
+.chats {
+}
+
+.chats > a {
+  text-decoration: none;
+  color: black;
+}
