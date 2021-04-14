@@ -1,0 +1,31 @@
+.editedInput {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.editedInput > input {
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  flex: 1;
+}
+
+.editedInput > input[type="password"] {
+  border: none;
+  border: 1px solid lightgray;
+  flex: 1;
+}
+
+.editedInput > input:focus {
+  outline: none;
+  border: 1px solid lightgray;
+}
+
+.editedInput__label {
+  text-align: start;
+  width: 150px;
+  font-size: 14px;
+}

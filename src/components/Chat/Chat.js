@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { deepOrange, deepPurple, teal } from "@material-ui/core/colors";
 import { Avatar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import "./chat.css";
@@ -31,7 +30,7 @@ function Chat({ name, avatar, message, timestamp, id, ...props }) {
   }, [name]);
 
   return (
-    <Link to={`/chats/${id}`}>
+    <Link to={`/chats/${id}`} >
       <div className="chat">
         <Avatar alt={name} src={avatar} className={classes.large}>
           {initials}
