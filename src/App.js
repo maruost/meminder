@@ -103,6 +103,7 @@ function App() {
           <Profile />
         </Route>
         <Route exact path="/registration">
+          <Header />
           <Registration />
         </Route>
         <Route exact path="/result" component={Result}></Route>

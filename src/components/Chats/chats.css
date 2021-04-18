@@ -1,7 +1,42 @@
 .chats {
+  max-width: 680px;
+  margin: 0 auto;
 }
 
-.chats > a {
+.chats__items {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.chats__items > a {
   text-decoration: none;
   color: black;
+}
+
+.chats__matches {
+  max-width: 620px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.chats__match-nav {
+  position: absolute;
+  top: -10px;
+}
+
+.chats__match-nav.chats__match-nav_left {
+  position: absolute;
+  top: -10px;
+  left: -30px;
+}
+
+.chats__match-nav.chats__match-nav_right {
+  position: absolute;
+  top: -10px;
+  right: -30px;
+}
+
+.chats__title {
+  text-align: start;
+  font-weight: 400;
 }

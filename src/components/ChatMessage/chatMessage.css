@@ -8,7 +8,7 @@
 .chatUserMessage {
   align-self: flex-end;
   margin-bottom: 10px;
-}
+ }
 
 .chatMessage__box {
   display: flex;

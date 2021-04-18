@@ -72,7 +72,7 @@ function ProfileSettings() {
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.email && formik.errors.password}
         />
-        <PrimaryButton>Сохранить изменения</PrimaryButton>
+        <PrimaryButton size="small">Сохранить изменения</PrimaryButton>
       </form>
       <PrimaryButton color="default">Выйти из аккаунта</PrimaryButton>
     </div>

@@ -1,22 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Dropzone from "react-dropzone";
-import {
-  Paper,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from "@material-ui/core";
-import { CloudUpload, InsertDriveFile } from "@material-ui/icons";
+import { Paper, List, ListItem, ListItemText } from "@material-ui/core";
+import { CloudUpload } from "@material-ui/icons";
 
 function DropZone({ name, setFieldValue, values, ...props }) {
+  useEffect(
+    () => () => {
+      values.forEach((file) => URL.revokeObjectURL(file.preview));
+    },
+    [values]
+  );
+
   return (
     <div>
       <Dropzone
         multiple={true}
         accept="image/jpeg, image/png"
         onDrop={(acceptedFiles) => {
-          setFieldValue("files", [...values, ...acceptedFiles]);
+          console.log("acc files: ", acceptedFiles);
+          const filesWithURL = acceptedFiles.map((file) =>
+            Object.assign(file, {
+              preview: URL.createObjectURL(file),
+            })
+          );
+          setFieldValue("files", [...values, ...filesWithURL]);
         }}
       >
         {({ getRootProps, getInputProps }) => (
@@ -30,9 +37,7 @@ function DropZone({ name, setFieldValue, values, ...props }) {
       <List>
         {values.map((f, index) => (
           <ListItem key={index}>
-            <ListItemIcon>
-              <InsertDriveFile />
-            </ListItemIcon>
+            <img src={f.preview} width="50px" height="50px" alt="файл" />
             <ListItemText primary={f.name} secondary={f.size} />
           </ListItem>
         ))}

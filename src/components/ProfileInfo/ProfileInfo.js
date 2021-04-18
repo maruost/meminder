@@ -46,7 +46,7 @@ function ProfileInfo() {
     initialValues: {
       firstName: "DFDFGDFG",
       lastName: "DFGD",
-      date: "23-03-96",
+      date: "23-03-1996",
       gender: "female",
       searchingGender: "male",
       location: "Moscow",

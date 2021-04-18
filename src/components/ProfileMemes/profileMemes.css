@@ -1,0 +1,9 @@
+.profileMemes {
+  max-width: 680px;
+}
+
+.profileMemes__container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
