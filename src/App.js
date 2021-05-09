@@ -1,19 +1,20 @@
 import "./App.css";
-import { React, useState, useMemo, createRef } from "react";
-import { Link, Switch, Route } from "react-router-dom";
+import { React, useState, useMemo, createRef, useEffect } from "react";
+import { Link, Switch, Route, useHistory } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import WelcomeBoard from "./components/WelcomeBoard/WelcomeBoard";
 import Registration from "./components/Registration/Registration";
-import { Step1 } from "./components/Step1";
-import { Step2 } from "./components/Step2";
-import { Result } from "./components/Result";
-import Step3 from "./components/Step3";
 import Chats from "./components/Chats/Chats";
 import Profile from "./components/Profile/Profile";
 import Chat from "./components/Chat/Chat";
 import ChatScreen from "./components/ChatScreen/ChatScreen";
+import ProfileInfo from "./components/ProfileInfo/ProfileInfo";
+import ProfileMemes from "./components/ProfileMemes/ProfileMemes";
+import ProfileSettings from "./components/ProfileSettings/ProfileSettings";
+import SignIn from "./components/SignIn/SignIn";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 const db = [
   {
@@ -40,6 +41,18 @@ let peopleState = db;
 function App() {
   const [people, setPeople] = useState(db);
   const [lastDirection, setLastDirection] = useState();
+  const [loggedIn, setLoggedIn] = useState(false);
+  const history = useHistory();
+  useEffect(() => {
+    localStorage.getItem("token") ? setLoggedIn(true) : setLoggedIn(false);
+    // if (loggedIn) {
+    //   history.push("/questionary");
+    // }
+  }, []);
+
+  const handleLogin = () => {
+    setLoggedIn(true);
+  };
 
   const childRefs = useMemo(
     () =>
@@ -75,40 +88,66 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/welcome-board">
-          <Header />
+        <ProtectedRoute
+          exact
+          path="/"
+          loggedIn={loggedIn}
+          component={
+            <>
+              <Header loggedIn={loggedIn} />
+              <Main
+                people={people}
+                lastDirection={lastDirection}
+                onSwiped={swiped}
+                onSwipe={swipe}
+                onOutOfFrame={outOfFrame}
+                childRefs={childRefs}
+              />
+            </>
+          }
+        />
+        <ProtectedRoute
+          path="/chats/:person"
+          loggedIn={loggedIn}
+          component={
+            <>
+              <Header backButton="/chats" loggedIn={loggedIn} />
+              <ChatScreen />
+            </>
+          }
+        />
+        <ProtectedRoute
+          path="/chats"
+          loggedIn={loggedIn}
+          component={
+            <>
+              <Header backButton="/" loggedIn={loggedIn} />
+              <Chats />
+            </>
+          }
+        />
+        <ProtectedRoute
+          path="/profile"
+          loggedIn={loggedIn}
+          component={
+            <>
+              <Header backButton="/" loggedIn={loggedIn} />
+              <Profile />
+            </>
+          }
+        />
+        <Route path="/welcome-board">
+          <Header loggedIn={loggedIn} />
           <WelcomeBoard />
         </Route>
-        <Route exact path="/">
-          <Header />
-          <Main
-            people={people}
-            lastDirection={lastDirection}
-            onSwiped={swiped}
-            onSwipe={swipe}
-            onOutOfFrame={outOfFrame}
-            childRefs={childRefs}
-          />
+        <Route path="/auth">
+          <Header loggedIn={loggedIn} />
+          <Registration onHandleLogin={handleLogin} />
         </Route>
-        <Route exact path="/chats/:person">
-          <Header backButton="/chats" />
-          <ChatScreen />
+        <Route path="/signin">
+          <Header loggedIn={loggedIn} />
+          <SignIn />
         </Route>
-        <Route exact path="/chats">
-          <Header backButton="/" />
-          <Chats />
-        </Route>
-        <Route exact path="/profile">
-          <Header backButton="/" />
-          <Profile />
-        </Route>
-        <Route exact path="/registration">
-          <Header />
-          <Registration />
-        </Route>
-        <Route exact path="/result" component={Result}></Route>
-        <Route exact path={"/step2"} component={Step2} />
-        <Route exact path={"/step3"} component={Step3} />
       </Switch>
     </div>
   );

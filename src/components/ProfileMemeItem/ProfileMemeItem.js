@@ -47,8 +47,11 @@ function ProfileMemeItem({ onHandleFiles }) {
                   className="profileMemeItem__image"
                   alt="мем"
                 />
-                <button className="profileMemeItem__delete">
-                  <DeleteOutline onClick={handleDeleteMeme} />
+                <button
+                  className="profileMemeItem__delete"
+                  onClick={handleDeleteMeme}
+                >
+                  <DeleteOutline />
                 </button>
               </div>
             );

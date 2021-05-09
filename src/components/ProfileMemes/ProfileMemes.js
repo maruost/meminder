@@ -7,7 +7,7 @@ function ProfileMemes() {
   const [files, setFiles] = useState([]);
 
   const handleFiles = (file) => {
-    console.log(file);
+    console.log(file); //// !!!!!!!! надо сделать удаление конкретного элемента массива и его перезапись
     // setFiles([files, ...file]);
   };
   return (

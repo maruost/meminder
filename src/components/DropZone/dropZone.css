@@ -1,0 +1,7 @@
+.dropzone__deleteBtn {
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}

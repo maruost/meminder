@@ -12,7 +12,7 @@ function WelcomeBoard() {
         единомышленников по мемам. Загружай свои любимые мемы, свайпай чужие и
         находи идеальную пару.
       </p>
-      <Button variant="outlined" component={NavLink} to="/registration">
+      <Button variant="outlined" component={NavLink} to="/auth">
         ъуъ!
       </Button>
     </div>

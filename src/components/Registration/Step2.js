@@ -10,13 +10,14 @@ import {
   TextareaAutosize,
 } from "@material-ui/core";
 import { React, useState } from "react";
-import { Form } from "./Form";
-import { Input } from "./Input";
-import { MainContainer } from "./MainContainer";
+import { useRouteMatch } from "react-router-dom";
+import { Form } from "../Form";
+import { Input } from "../Input";
+import { MainContainer } from "../MainContainer";
 import { useForm } from "react-hook-form";
-import { PrimaryButton } from "./PrimaryButton";
+import { PrimaryButton } from "../PrimaryButton";
 import { useHistory } from "react-router-dom";
-import { useData } from "./DataContex";
+import { useData } from "../DataContex";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import moment from "moment";
@@ -61,7 +62,7 @@ export const Step2 = ({ ...props }) => {
     },
     validationSchema: schema,
     onSubmit: (data) => {
-      history.push("/step3");
+      history.push(`${props.url}/step3`);
       // setValues(data);
     },
   });

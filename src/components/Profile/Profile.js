@@ -1,9 +1,17 @@
 import React, { useState } from "react";
-import SimpleTabs from "../TabPanel/TabPanel";
+import {
+  Route,
+  useRouteMatch,
+  Link,
+  Switch,
+  BrowserRouter as Router,
+} from "react-router-dom";
+import SimpleTabs from "../SimpleTabs/SimpleTabs";
 import ProfileSettings from "../ProfileSettings/ProfileSettings";
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import ProfileMemes from "../ProfileMemes/ProfileMemes";
-import "./profile.css"
+import "./profile.css";
+import ProfileMemeItem from "../ProfileMemeItem/ProfileMemeItem";
 
 const userInfoDB = {
   _id: "dgdgdgd111",
@@ -16,14 +24,37 @@ const userInfoDB = {
 };
 
 function Profile() {
+  const { url, path } = useRouteMatch();
+  // const data = [
+  //   { path: "me", label: "Обо мне" },
+  //   { path: "memes", label: "Мои мемы" },
+  //   { path: "settings", label: "Настройки" },
+  // ];
   return (
-    <div className="profile">
-      <SimpleTabs>
-        <ProfileInfo label="Обо мне" />
-        <ProfileMemes label="Мои мемы" />
-        <ProfileSettings label="Настройки" />
-      </SimpleTabs>
-    </div>
+      <div className="profile">
+        <div className="profile__panel">
+          <Link to={`${url}/me`}>
+            <p className="profile__link">Обо мне</p>
+          </Link>
+          <Link to={`${url}/memes`}>
+            <p className="profile__link">Обо мне</p>
+          </Link>
+          <Link to={`${url}/settings`}>
+            <p className="profile__link">Обо мне</p>
+          </Link>
+        </div>
+        <Switch>
+          <Route path={`${path}/me`}>
+            <ProfileInfo />
+          </Route>
+          <Route path={`${path}/memes`}>
+            <ProfileMemes />
+          </Route>
+          <Route path={`${path}/settings`}>
+            <ProfileSettings />
+          </Route>
+        </Switch>
+      </div>
   );
 }
 

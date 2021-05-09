@@ -5,32 +5,78 @@ import { Person, Forum, ArrowBackIos } from "@material-ui/icons";
 import "./header.css";
 import logo from "../../static/images/logo_meminder.png";
 
-function Header({ backButton, ...props }) {
+function Header({ backButton, loggedIn, ...props }) {
   const history = useHistory();
-  return (
-    <div className="header">
-      {backButton ? (
+
+  const renderStartHeader = () => {
+    return (
+      <div className="header">
+        <Link to="/" className="header__logo-name">
+          Meminder
+        </Link>
+        <Link to="/">
+          <img className="header__icon" src={logo} alt="meminder icon" />
+        </Link>
+        <div className="header__auth-box">
+          <Link to="/signin" className="header__link">
+            Вход
+          </Link>
+          <Link to="/auth" className="header__link">
+            Регистрация
+          </Link>
+        </div>
+      </div>
+    );
+  };
+
+  const renderHeaderWithBackButton = () => {
+    return (
+      <div className="header">
         <Link to={backButton}>
           <IconButton>
             <ArrowBackIos />
           </IconButton>
         </Link>
-      ) : (
+        <Link to="/">
+          <img className="header__icon" src={logo} alt="meminder icon" />
+        </Link>
+        <Link to="/chats">
+          <IconButton>
+            <Forum />
+          </IconButton>
+        </Link>
+      </div>
+    );
+  };
+
+  const renderHeader = () => {
+    return (
+      <div className="header">
         <Link to={"/profile"}>
           <IconButton>
             <Person />
           </IconButton>
         </Link>
-      )}
-      <Link to="/">
-        <img className="header__icon" src={logo} alt="meminder icon" />
-      </Link>
-      <Link to="/chats">
-        <IconButton>
-          <Forum />
-        </IconButton>
-      </Link>
-    </div>
+        <Link to="/">
+          <img className="header__icon" src={logo} alt="meminder icon" />
+        </Link>
+        <Link to="/chats">
+          <IconButton>
+            <Forum />
+          </IconButton>
+        </Link>
+      </div>
+    );
+  };
+
+  return (
+    <>
+      {loggedIn
+        ? backButton
+          ? renderHeaderWithBackButton()
+          : renderHeader()
+        : renderStartHeader()}
+    </>
   );
 }
 
