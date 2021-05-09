@@ -6,7 +6,7 @@ import { Input } from "../Input";
 import { MainContainer } from "../MainContainer";
 import { PrimaryButton } from "../PrimaryButton";
 import { useHistory } from "react-router-dom";
-import { useData } from "../DataContex";
+import { useData } from "../DataContext/DataContext";
 import * as yup from "yup";
 import { useFormik } from "formik";
 
@@ -63,6 +63,10 @@ const SignIn = ({ ...props }) => {
         <PrimaryButton color={!formik.isValid ? "default" : "primary"}>
           Войти
         </PrimaryButton>
+        <Typography component="h5" variant="subtitle1">
+          Ещё нет аккаунта?
+        </Typography>
+        <Link to="../auth">Зарегистрироваться</Link>
       </Form>
     </MainContainer>
   );

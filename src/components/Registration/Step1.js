@@ -6,7 +6,7 @@ import { Input } from "../Input";
 import { MainContainer } from "../MainContainer";
 import { PrimaryButton } from "../PrimaryButton";
 import { useHistory } from "react-router-dom";
-import { useData } from "../DataContex";
+import { useData } from "../DataContext/DataContext";
 import * as yup from "yup";
 import { useFormik } from "formik";
 
@@ -23,6 +23,7 @@ let schema = yup.object().shape({
 
 export const Step1 = ({ ...props }) => {
   const history = useHistory();
+  const { data, setValues } = useData();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -33,7 +34,7 @@ export const Step1 = ({ ...props }) => {
       console.log(data);
       if (data) {
         history.push(`${props.url}/step2`);
-        // setValues(data);
+        setValues(data);
       }
     },
   });
@@ -69,6 +70,10 @@ export const Step1 = ({ ...props }) => {
         <PrimaryButton color={!formik.isValid ? "default" : "primary"}>
           Дальше
         </PrimaryButton>
+        <Typography component="h5" variant="subtitle1">
+          Уже есть аккаунт?
+        </Typography>
+        <Link to="./signin">Войти</Link>
       </Form>
     </MainContainer>
   );

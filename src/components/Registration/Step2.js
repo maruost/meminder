@@ -10,14 +10,14 @@ import {
   TextareaAutosize,
 } from "@material-ui/core";
 import { React, useState } from "react";
-import { useRouteMatch } from "react-router-dom";
+import { useRouteMatch, Link } from "react-router-dom";
 import { Form } from "../Form";
 import { Input } from "../Input";
 import { MainContainer } from "../MainContainer";
 import { useForm } from "react-hook-form";
 import { PrimaryButton } from "../PrimaryButton";
 import { useHistory } from "react-router-dom";
-import { useData } from "../DataContex";
+import { useData } from "../DataContext/DataContext";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import moment from "moment";
@@ -47,7 +47,7 @@ let schema = yup.object().shape({
 
 export const Step2 = ({ ...props }) => {
   const history = useHistory();
-  // const { data, setValues } = useData();
+  const { data, setValues } = useData();
 
   const formik = useFormik({
     initialValues: {
@@ -63,7 +63,7 @@ export const Step2 = ({ ...props }) => {
     validationSchema: schema,
     onSubmit: (data) => {
       history.push(`${props.url}/step3`);
-      // setValues(data);
+      setValues(data);
     },
   });
 
@@ -224,6 +224,10 @@ export const Step2 = ({ ...props }) => {
         >
           Назад
         </PrimaryButton>
+        <Typography component="h5" variant="subtitle1">
+          Уже есть аккаунт?
+        </Typography>
+        <Link to="../signin">Войти</Link>
       </Form>
     </MainContainer>
   );

@@ -6,20 +6,28 @@ import { Form } from "../Form";
 import { PrimaryButton } from "../PrimaryButton";
 import { MainContainer } from "../MainContainer";
 import { Typography } from "@material-ui/core";
+import { useData } from "../DataContext/DataContext";
+import Swal from "sweetalert2";
 
 function Step3({ onHandleLogin, ...props }) {
   const history = useHistory();
-  const [referrer, setRefferer] = useState(null);
+  const { data, setValues } = useData();
 
   const formik = useFormik({
     initialValues: {
       files: [],
     },
-    onSubmit: (data) => {
-      setRefferer("/");
-      if (referrer) {
-        history.push(referrer);
-      }
+    onSubmit: (files) => {
+      console.log(files);
+      setValues(files);
+      Swal.fire({
+        title: "Регистрация прошла успешно",
+        text: 'Нажмите кнопку "Далее", чтобы начать пользоваться приложением',
+        icon: "success",
+        confirmButtonText: "Далее",
+      }).then(() => {
+        history.push("../signin");
+      });
     },
   });
 
@@ -41,12 +49,7 @@ function Step3({ onHandleLogin, ...props }) {
           values={formik.values.files}
           onHandleDeleteMeme={handleDeleteMeme}
         />
-        <PrimaryButton
-          color={!formik.isValid ? "default" : "primary"}
-          onClick={() => {
-            onHandleLogin();
-          }}
-        >
+        <PrimaryButton color={!formik.isValid ? "default" : "primary"}>
           Готово!
         </PrimaryButton>
         <PrimaryButton
@@ -58,6 +61,10 @@ function Step3({ onHandleLogin, ...props }) {
         >
           Назад
         </PrimaryButton>
+        <Typography component="h5" variant="subtitle1">
+          Уже есть аккаунт?
+        </Typography>
+        <Link to="../signin">Войти</Link>
       </Form>
     </MainContainer>
   );
