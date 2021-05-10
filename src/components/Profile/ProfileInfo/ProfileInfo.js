@@ -1,8 +1,8 @@
 import React from "react";
-import EditedInput from "../EditedInput/EditedInput";
+import EditedInput from "../../EditedInput/EditedInput";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { Input } from "../Input";
+import { Input } from "../../Input";
 import {
   Typography,
   FormControlLabel,
@@ -15,7 +15,7 @@ import {
   TextareaAutosize,
 } from "@material-ui/core";
 import moment from "moment";
-import { PrimaryButton } from "../PrimaryButton";
+import { PrimaryButton } from "../../PrimaryButton";
 import "./profileInfo.css";
 
 let schema = yup.object().shape({

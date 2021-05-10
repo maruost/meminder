@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, useRouteMatch } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
@@ -10,9 +11,10 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CenteredTabs() {
+export default function ProfileTabs({ children }) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const { url, path } = useRouteMatch();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -27,9 +29,13 @@ export default function CenteredTabs() {
         textColor="primary"
         centered
       >
-        <Tab label="Обо мне" />
-        <Tab label="Мои мемы" />
-        <Tab label="Настройки " />
+        <Tab component={Link} to={url} label="Обо мне" />
+        <Tab component={Link} to={`${url}/memes`} label="Мои мемы" />
+        <Tab
+          component={Link}
+          to={`${url}/settings`}
+          label="Настройки профиля"
+        />
       </Tabs>
     </Paper>
   );

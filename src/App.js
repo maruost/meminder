@@ -1,20 +1,17 @@
 import "./App.css";
 import { React, useState, useMemo, createRef, useEffect } from "react";
-import { Link, Switch, Route, useHistory } from "react-router-dom";
-import { BrowserRouter as Router } from "react-router-dom";
+import { Switch, Route, useHistory, Redirect } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import WelcomeBoard from "./components/WelcomeBoard/WelcomeBoard";
 import Registration from "./components/Registration/Registration";
 import Chats from "./components/Chats/Chats";
 import Profile from "./components/Profile/Profile";
-import Chat from "./components/Chat/Chat";
 import ChatScreen from "./components/ChatScreen/ChatScreen";
-import ProfileInfo from "./components/ProfileInfo/ProfileInfo";
-import ProfileMemes from "./components/ProfileMemes/ProfileMemes";
-import ProfileSettings from "./components/ProfileSettings/ProfileSettings";
 import SignIn from "./components/SignIn/SignIn";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import NotFound from "./components/NotFound/NotFound";
+import Footer from "./components/Footer/Footer";
 
 const db = [
   {
@@ -41,17 +38,22 @@ let peopleState = db;
 function App() {
   const [people, setPeople] = useState(db);
   const [lastDirection, setLastDirection] = useState();
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(
+    !!localStorage.getItem("token") || false
+  );
+  const [backButton, setBackButton] = useState(null);
   const history = useHistory();
+
   useEffect(() => {
     localStorage.getItem("token") ? setLoggedIn(true) : setLoggedIn(false);
-    // if (loggedIn) {
-    //   history.push("/questionary");
-    // }
   }, []);
 
   const handleLogin = () => {
     setLoggedIn(true);
+  };
+
+  const handleLoginFalse = () => {
+    setLoggedIn(false);
   };
 
   const childRefs = useMemo(
@@ -85,70 +87,77 @@ function App() {
       childRefs[index].current.swipe(dir); // Swipe the card!
     }
   };
+
+  const handleBackButton = (path) => {
+    setBackButton(path);
+  };
   return (
     <div className="App">
-      <Switch>
-        <ProtectedRoute
-          exact
-          path="/"
-          loggedIn={loggedIn}
-          component={
-            <>
-              <Header loggedIn={loggedIn} />
-              <Main
-                people={people}
-                lastDirection={lastDirection}
-                onSwiped={swiped}
-                onSwipe={swipe}
-                onOutOfFrame={outOfFrame}
-                childRefs={childRefs}
-              />
-            </>
-          }
-        />
-        <ProtectedRoute
-          path="/chats/:person"
-          loggedIn={loggedIn}
-          component={
-            <>
-              <Header backButton="/chats" loggedIn={loggedIn} />
-              <ChatScreen />
-            </>
-          }
-        />
-        <ProtectedRoute
-          path="/chats"
-          loggedIn={loggedIn}
-          component={
-            <>
-              <Header backButton="/" loggedIn={loggedIn} />
-              <Chats />
-            </>
-          }
-        />
-        <ProtectedRoute
-          path="/profile"
-          loggedIn={loggedIn}
-          component={
-            <>
-              <Header backButton="/" loggedIn={loggedIn} />
-              <Profile />
-            </>
-          }
-        />
-        <Route path="/welcome-board">
-          <Header loggedIn={loggedIn} />
-          <WelcomeBoard />
-        </Route>
-        <Route path="/auth">
-          <Header loggedIn={loggedIn} />
-          <Registration onHandleLogin={handleLogin} />
-        </Route>
-        <Route path="/signin">
-          <Header loggedIn={loggedIn} />
-          <SignIn />
-        </Route>
-      </Switch>
+      <Header backButton={backButton} loggedIn={loggedIn} />
+      <main style={{ flex: 1, marginTop: '50px' }}>
+        <Switch>
+          <ProtectedRoute
+            path="/chats/:person"
+            loggedIn={loggedIn}
+            onHandleBackButton={handleBackButton}
+            component={ChatScreen}
+          />
+          <ProtectedRoute
+            path="/chats"
+            loggedIn={loggedIn}
+            onHandleBackButton={handleBackButton}
+            component={Chats}
+          />
+          <ProtectedRoute
+            path="/profile"
+            loggedIn={loggedIn}
+            onHandleBackButton={handleBackButton}
+            onHandleLoginFalse={handleLoginFalse}
+            component={Profile}
+          />
+          <Route path="/auth">
+            {loggedIn ? (
+              <Redirect to="/" />
+            ) : (
+              <>
+                <Registration onHandleLogin={handleLogin} />
+              </>
+            )}
+          </Route>
+          <Route path="/signin">
+            {loggedIn ? (
+              <Redirect to="/" />
+            ) : (
+              <>
+                <SignIn onHandleLogin={handleLogin} />
+              </>
+            )}
+          </Route>
+          <ProtectedRoute
+            exact
+            path="/"
+            loggedIn={loggedIn}
+            people={people}
+            lastDirection={lastDirection}
+            onSwiped={swiped}
+            onSwipe={swipe}
+            onOutOfFrame={outOfFrame}
+            childRefs={childRefs}
+            component={Main}
+          />
+          <Route path="/welcome-board">
+            {loggedIn ? (
+              <Redirect to="/" />
+            ) : (
+              <>
+                <WelcomeBoard />
+              </>
+            )}
+          </Route>
+          <Route path="*" component={NotFound} />
+        </Switch>
+      </main>
+      <Footer />
     </div>
   );
 }

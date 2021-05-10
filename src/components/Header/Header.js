@@ -10,7 +10,7 @@ function Header({ backButton, loggedIn, ...props }) {
 
   const renderStartHeader = () => {
     return (
-      <div className="header">
+      <header className="header">
         <Link to="/" className="header__logo-name">
           Meminder
         </Link>
@@ -25,13 +25,13 @@ function Header({ backButton, loggedIn, ...props }) {
             Регистрация
           </Link>
         </div>
-      </div>
+      </header>
     );
   };
 
   const renderHeaderWithBackButton = () => {
     return (
-      <div className="header">
+      <header className="header">
         <Link to={backButton}>
           <IconButton>
             <ArrowBackIos />
@@ -45,13 +45,13 @@ function Header({ backButton, loggedIn, ...props }) {
             <Forum />
           </IconButton>
         </Link>
-      </div>
+      </header>
     );
   };
 
   const renderHeader = () => {
     return (
-      <div className="header">
+      <header className="header">
         <Link to={"/profile"}>
           <IconButton>
             <Person />
@@ -65,7 +65,7 @@ function Header({ backButton, loggedIn, ...props }) {
             <Forum />
           </IconButton>
         </Link>
-      </div>
+      </header>
     );
   };
 

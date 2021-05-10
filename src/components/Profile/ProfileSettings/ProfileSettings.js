@@ -1,8 +1,10 @@
 import React, { useRef, useState } from "react";
-import EditedInput from "../EditedInput/EditedInput";
+import { Redirect, useHistory } from "react-router-dom";
+import EditedInput from "../../EditedInput/EditedInput";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { PrimaryButton } from "../PrimaryButton";
+import { PrimaryButton } from "../../PrimaryButton";
+import { Domain } from "@material-ui/icons";
 
 let schema = yup.object().shape({
   email: yup
@@ -19,7 +21,8 @@ let schema = yup.object().shape({
     .required("Поле обязательно должно быть заполнено"),
 });
 
-function ProfileSettings() {
+function ProfileSettings({ ...props }) {
+  const history = useHistory();
   const formik = useFormik({
     initialValues: {
       email: "msmsmmsdm@yandex.ru",
@@ -34,6 +37,12 @@ function ProfileSettings() {
       // setValues(data);
     },
   });
+
+  function handleLogout() {
+    localStorage.removeItem("token");
+    props.onHandleLoginFalse();
+    history.push("../welcome-board");
+  }
   return (
     <div className="profileSettings">
       <h2 className="profileSettings__title">Настройки профиля</h2>
@@ -74,7 +83,9 @@ function ProfileSettings() {
         />
         <PrimaryButton size="small">Сохранить изменения</PrimaryButton>
       </form>
-      <PrimaryButton color="default">Выйти из аккаунта</PrimaryButton>
+      <PrimaryButton color="default" onClick={handleLogout}>
+        Выйти из аккаунта
+      </PrimaryButton>
     </div>
   );
 }

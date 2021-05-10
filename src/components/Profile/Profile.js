@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Route,
   useRouteMatch,
   Link,
   Switch,
   BrowserRouter as Router,
+  Redirect,
 } from "react-router-dom";
-import SimpleTabs from "../SimpleTabs/SimpleTabs";
-import ProfileSettings from "../ProfileSettings/ProfileSettings";
-import ProfileInfo from "../ProfileInfo/ProfileInfo";
-import ProfileMemes from "../ProfileMemes/ProfileMemes";
+import ProfileSettings from "./ProfileSettings/ProfileSettings";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import ProfileMemes from "./ProfileMemes/ProfileMemes";
 import "./profile.css";
-import ProfileMemeItem from "../ProfileMemeItem/ProfileMemeItem";
+import ProfileTabs from "./ProfileTabs/ProfileTabs";
 
 const userInfoDB = {
   _id: "dgdgdgd111",
@@ -23,38 +23,35 @@ const userInfoDB = {
   ],
 };
 
-function Profile() {
+function Profile({ ...props }) {
   const { url, path } = useRouteMatch();
-  // const data = [
-  //   { path: "me", label: "Обо мне" },
-  //   { path: "memes", label: "Мои мемы" },
-  //   { path: "settings", label: "Настройки" },
-  // ];
+  const handleBackButton = (path) => {
+    props.onHandleBackButton(path);
+  };
+  useEffect(() => {
+    handleBackButton("/");
+    return () => {
+      handleBackButton(null);
+    };
+  }, []);
+  console.log(url, path);
   return (
-      <div className="profile">
-        <div className="profile__panel">
-          <Link to={`${url}/me`}>
-            <p className="profile__link">Обо мне</p>
-          </Link>
-          <Link to={`${url}/memes`}>
-            <p className="profile__link">Обо мне</p>
-          </Link>
-          <Link to={`${url}/settings`}>
-            <p className="profile__link">Обо мне</p>
-          </Link>
-        </div>
-        <Switch>
-          <Route path={`${path}/me`}>
-            <ProfileInfo />
-          </Route>
-          <Route path={`${path}/memes`}>
-            <ProfileMemes />
-          </Route>
-          <Route path={`${path}/settings`}>
-            <ProfileSettings />
-          </Route>
-        </Switch>
+    <section className="profile">
+      <div className="profile__panel">
+        <ProfileTabs />
       </div>
+      <Switch>
+        <Route path={`${path}/memes`}>
+          <ProfileMemes />
+        </Route>
+        <Route exact path={`${path}`}>
+          <ProfileInfo />
+        </Route>
+        <Route path={`${path}/settings`}>
+          <ProfileSettings onHandleLoginFalse={props.onHandleLoginFalse} />
+        </Route>
+      </Switch>
+    </section>
   );
 }
 

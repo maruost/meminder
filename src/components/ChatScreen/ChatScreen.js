@@ -19,12 +19,23 @@ const messagesData = {
   ],
 };
 
-function ChatScreen() {
+function ChatScreen({ ...props }) {
   const initailMessages = messagesData.messages;
   const pathArr = window.location.pathname.split("/");
   const id = pathArr[2];
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState(initailMessages);
+
+  const handleBackButton = (path) => {
+    props.onHandleBackButton(path);
+  };
+
+  useEffect(() => {
+    handleBackButton("/chats");
+    return () => {
+      handleBackButton(null);
+    };
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();

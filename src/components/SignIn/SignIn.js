@@ -9,14 +9,16 @@ import { useHistory } from "react-router-dom";
 import { useData } from "../DataContext/DataContext";
 import * as yup from "yup";
 import { useFormik } from "formik";
+import FakeApi from "../utils/FakeApi";
 
 let schema = yup.object().shape({
   email: yup.string().email("Пожалуйста, введите действующий e-mail"),
   password: yup.string(),
 });
 
-const SignIn = ({ ...props }) => {
+const SignIn = ({ onHandleLogin, ...props }) => {
   const history = useHistory();
+  const { signin } = FakeApi();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -25,9 +27,12 @@ const SignIn = ({ ...props }) => {
     validationSchema: schema,
     onSubmit: (data) => {
       console.log(data);
-      if (data) {
-        history.push(`${props.url}/`);
-        // setValues(data);
+      const userData = signin(data);
+      if (userData.status === 200) {
+        onHandleLogin();
+        localStorage.setItem("token", userData.token);
+      } else {
+        console.log(userData.message);
       }
     },
   });

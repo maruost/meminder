@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./profileMemes.css";
-import { PrimaryButton } from "../PrimaryButton";
-import ProfileMemeItem from "../ProfileMemeItem/ProfileMemeItem";
+import { PrimaryButton } from "../../PrimaryButton";
+import ProfileMemeItem from "./ProfileMemeItem/ProfileMemeItem";
 
 function ProfileMemes() {
   const [files, setFiles] = useState([]);

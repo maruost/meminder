@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, Route, Switch } from "react-router-dom";
 import Chat from "../Chat/Chat";
 import { makeStyles } from "@material-ui/core/styles";
 import "./chats.css";
@@ -7,6 +7,7 @@ import Carousel from "nuka-carousel";
 import { Avatar } from "@material-ui/core";
 import leftArrowIcon from "../../static/images/left-arrow-dark.svg";
 import rightArrowIcon from "../../static/images/right-arrow-dark.svg";
+import ChatScreen from "../ChatScreen/ChatScreen";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,6 +30,16 @@ const styleConfig = {
 
 function Chats({ ...props }) {
   const classes = useStyles();
+  const handleBackButton = (path) => {
+    props.onHandleBackButton(path);
+  };
+  useEffect(() => {
+    handleBackButton("/");
+    return () => {
+      handleBackButton(null);
+    };
+  }, []);
+
   const chatsArray = [
     {
       name: "John Sallivan",
@@ -97,7 +108,7 @@ function Chats({ ...props }) {
     },
   ];
   return (
-    <div className="chats">
+    <section className="chats">
       <h4 className="chats__title">Ваши пары</h4>
       <div className="chats__matches">
         <Carousel
@@ -157,7 +168,7 @@ function Chats({ ...props }) {
           />
         ))}
       </div>
-    </div>
+    </section>
   );
 }
 

@@ -20,6 +20,8 @@ const useStyles = makeStyles((theme) => ({
 function Chat({ name, avatar, message, timestamp, id, ...props }) {
   const classes = useStyles();
   const [initials, setInitials] = useState();
+  console.log(props);
+
 
   useEffect(() => {
     const initials = name
@@ -30,7 +32,7 @@ function Chat({ name, avatar, message, timestamp, id, ...props }) {
   }, [name]);
 
   return (
-    <Link to={`/chats/${id}`} >
+    <Link to={`/chats/${id}`}>
       <div className="chat">
         <Avatar alt={name} src={avatar} className={classes.large}>
           {initials}
