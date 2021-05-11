@@ -94,7 +94,7 @@ function App() {
   return (
     <div className="App">
       <Header backButton={backButton} loggedIn={loggedIn} />
-      <main style={{ flex: 1, marginTop: '50px' }}>
+      <main>
         <Switch>
           <ProtectedRoute
             path="/chats/:person"

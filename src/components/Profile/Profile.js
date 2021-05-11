@@ -10,7 +10,7 @@ import {
 import ProfileSettings from "./ProfileSettings/ProfileSettings";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import ProfileMemes from "./ProfileMemes/ProfileMemes";
-import "./profile.css";
+import s from "./profile.module.scss";
 import ProfileTabs from "./ProfileTabs/ProfileTabs";
 
 const userInfoDB = {
@@ -36,8 +36,8 @@ function Profile({ ...props }) {
   }, []);
   console.log(url, path);
   return (
-    <section className="profile">
-      <div className="profile__panel">
+    <section className={s.profile}>
+      <div className={s.panel}>
         <ProfileTabs />
       </div>
       <Switch>

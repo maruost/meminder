@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import { Link, Route, Switch } from "react-router-dom";
 import Chat from "../Chat/Chat";
 import { makeStyles } from "@material-ui/core/styles";
-import "./chats.css";
 import Carousel from "nuka-carousel";
 import { Avatar } from "@material-ui/core";
 import leftArrowIcon from "../../static/images/left-arrow-dark.svg";
 import rightArrowIcon from "../../static/images/right-arrow-dark.svg";
 import ChatScreen from "../ChatScreen/ChatScreen";
+import s from "./chats.module.scss";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -108,9 +108,9 @@ function Chats({ ...props }) {
     },
   ];
   return (
-    <section className="chats">
-      <h4 className="chats__title">Ваши пары</h4>
-      <div className="chats__matches">
+    <section className={s.chats}>
+      <h4 className={s.title}>Ваши пары</h4>
+      <div className={s.matches}>
         <Carousel
           slidesToShow={7}
           defaultControlsConfig={styleConfig}
@@ -148,7 +148,7 @@ function Chats({ ...props }) {
           )}
         >
           {chatsArray.map((person) => (
-            <div className="chats__match-person">
+            <div className={s["match-person"]}>
               <Link to={`/chats/${person._id}`}>
                 <Avatar src={person.avatar} className={classes.large} />
               </Link>
@@ -156,17 +156,19 @@ function Chats({ ...props }) {
           ))}
         </Carousel>
       </div>
-      <div className="chats__items">
-        <h4 className="chats__title">Чаты</h4>
-        {chatsArray.map((chat) => (
-          <Chat
-            name={chat.name}
-            avatar={chat.avatar}
-            message={chat.message}
-            timestamp={chat.timestamp}
-            id={chat._id}
-          />
-        ))}
+      <div className={s.items}>
+        <h4 className={s.title}>Чаты</h4>
+        <div className={s.dialogs}>
+          {chatsArray.map((chat) => (
+            <Chat
+              name={chat.name}
+              avatar={chat.avatar}
+              message={chat.message}
+              timestamp={chat.timestamp}
+              id={chat._id}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -1,9 +1,11 @@
 .profileMemes {
-  max-width: 680px;
+  width: 100%;
+  height: 75vh;
 }
 
-.profileMemes__container {
+.container {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  width: 100%;
 }

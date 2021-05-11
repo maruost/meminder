@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { PrimaryButton } from "../../PrimaryButton";
 import { Domain } from "@material-ui/icons";
+import s from "./profileSettings.module.scss";
 
 let schema = yup.object().shape({
   email: yup
@@ -44,9 +45,9 @@ function ProfileSettings({ ...props }) {
     history.push("../welcome-board");
   }
   return (
-    <div className="profileSettings">
-      <h2 className="profileSettings__title">Настройки профиля</h2>
-      <form className="profileSettings__form" onSubmit={formik.handleSubmit}>
+    <div className={s.profileSettings}>
+      <h2 className={s.title}>Настройки профиля</h2>
+      <form className={s.form} onSubmit={formik.handleSubmit}>
         <EditedInput
           id="email"
           type="text"

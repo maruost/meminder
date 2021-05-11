@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./profileMemes.css";
 import { PrimaryButton } from "../../PrimaryButton";
 import ProfileMemeItem from "./ProfileMemeItem/ProfileMemeItem";
+import s from "./profileMemes.module.scss";
 
 function ProfileMemes() {
   const [files, setFiles] = useState([]);
@@ -11,8 +11,8 @@ function ProfileMemes() {
     // setFiles([files, ...file]);
   };
   return (
-    <div className="profileMemes">
-      <div className="profileMemes__container">
+    <div className={s.profileMemes}>
+      <div className={s.container}>
         <ProfileMemeItem onHandleFiles={handleFiles} />
         <ProfileMemeItem onHandleFiles={handleFiles} />
         <ProfileMemeItem onHandleFiles={handleFiles} />

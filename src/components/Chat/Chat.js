@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Avatar } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import "./chat.css";
+import s from "./chat.module.scss";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +22,6 @@ function Chat({ name, avatar, message, timestamp, id, ...props }) {
   const [initials, setInitials] = useState();
   console.log(props);
 
-
   useEffect(() => {
     const initials = name
       .split(" ")
@@ -32,16 +31,16 @@ function Chat({ name, avatar, message, timestamp, id, ...props }) {
   }, [name]);
 
   return (
-    <Link to={`/chats/${id}`}>
-      <div className="chat">
+    <Link to={`/chats/${id}`} className={s.link}>
+      <div className={s.chat}>
         <Avatar alt={name} src={avatar} className={classes.large}>
           {initials}
         </Avatar>
-        <div className="chat__details">
-          <h4 className="chat__userName">{name}</h4>
-          <p className="chat__message">{message}</p>
+        <div className={s.details}>
+          <h4 className={s["user-name"]}>{name}</h4>
+          <p className={s.message}>{message}</p>
         </div>
-        <p className="chat__timestamp">{timestamp}</p>
+        <p className={s.timestamp}>{timestamp}</p>
       </div>
     </Link>
   );

@@ -16,7 +16,7 @@ import {
 } from "@material-ui/core";
 import moment from "moment";
 import { PrimaryButton } from "../../PrimaryButton";
-import "./profileInfo.css";
+import s from "./profileInfo.module.scss";
 
 let schema = yup.object().shape({
   firstName: yup
@@ -60,9 +60,9 @@ function ProfileInfo() {
     },
   });
   return (
-    <div className="profileInfo">
-      <h2 className="profileInfo__title">Информация обо мне</h2>
-      <form className="profileSettings__form" onSubmit={formik.handleSubmit}>
+    <div className={s.profileInfo}>
+      <h2 className={s.title}>Информация обо мне</h2>
+      <form className={s.form} onSubmit={formik.handleSubmit}>
         <EditedInput
           id="firstName"
           type="text"
@@ -102,7 +102,7 @@ function ProfileInfo() {
           helperText={formik.touched.date && formik.errors.date}
         />
         <FormControl component="fieldset">
-          <FormLabel component="legend">Твой пол</FormLabel>
+          <FormLabel component="legend">Мой пол</FormLabel>
           <RadioGroup
             row
             aria-label="gender"
@@ -131,7 +131,7 @@ function ProfileInfo() {
           </RadioGroup>
         </FormControl>
         <FormControl component="fieldset">
-          <FormLabel component="legend">Кого ты ищещь?</FormLabel>
+          <FormLabel component="legend">Я ищу</FormLabel>
           <RadioGroup
             row
             aria-label="searchingGender"
@@ -150,19 +150,23 @@ function ProfileInfo() {
             <FormControlLabel
               value="female"
               control={<Radio />}
-              label="Женщина"
+              label="Женщину"
             />
             <FormControlLabel
               value="male"
               control={<Radio />}
-              label="Мужчина"
+              label="Мужчину"
             />
             <FormControlLabel
               value="other"
               control={<Radio />}
               label="Другое"
             />
-            <FormControlLabel value="all" control={<Radio />} label="Любой" />
+            <FormControlLabel
+              value="all"
+              control={<Radio />}
+              label="Пол не важен"
+            />
           </RadioGroup>
         </FormControl>
         <Input
@@ -175,34 +179,37 @@ function ProfileInfo() {
           error={formik.touched.location && Boolean(formik.errors.location)}
           helperText={formik.touched.location && formik.errors.location}
         />
-        <FormControlLabel
-          control={
-            <Switch
-              checked={
-                formik.values.location ? formik.values.locationToFind : null
-              }
-              name="locationToFind"
-              value={formik.values.locationToFind}
-              onChange={formik.handleChange}
-              error={
-                formik.touched.locationToFind &&
-                Boolean(formik.errors.locationToFind)
-              }
-              helperText={
-                formik.touched.locationToFind && formik.errors.locationToFind
-              }
-              disabled={formik.values.location ? false : true}
-            />
-          }
-          label="Ты хочешь найти пару в твоём городе?"
-        />
+        <div className={s.slider}>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={
+                  formik.values.location ? formik.values.locationToFind : null
+                }
+                name="locationToFind"
+                value={formik.values.locationToFind}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.locationToFind &&
+                  Boolean(formik.errors.locationToFind)
+                }
+                helperText={
+                  formik.touched.locationToFind && formik.errors.locationToFind
+                }
+                disabled={formik.values.location ? false : true}
+              />
+            }
+            label="Искать пару в моём городе"
+          />
+        </div>
         <TextareaAutosize
           aria-label="empty textarea"
-          placeholder="Здесь можешь написать немного о себе"
+          placeholder="Кое-что обо мне"
           name="about"
           rowsMax={8}
           value={formik.values.about}
           onChange={formik.handleChange}
+          className={s["text-area"]}
         />
         <PrimaryButton>Сохранить изменения</PrimaryButton>
       </form>

@@ -1,11 +1,11 @@
 import React from "react";
 import TinderCards from "../TinderCards/TinderCards";
-import "./main.css";
+import s from "./main.module.scss";
 import BottomButtons from "../BottomButtons/BottomButtons";
 
 function Main({ people, onSwiped, onSwipe, onOutOfFrame, childRefs }) {
   return (
-    <div className="main">
+    <div className={s.main}>
       <TinderCards
         people={people}
         onSwiped={onSwiped}

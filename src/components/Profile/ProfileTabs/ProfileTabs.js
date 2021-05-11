@@ -1,15 +1,63 @@
 import React from "react";
 import { Link, useRouteMatch } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import Typography from "@material-ui/core/Typography";
 
-const useStyles = makeStyles({
+const AntTabs = withStyles({
+  root: {
+    borderBottom: "1px solid #e8e8e8",
+  },
+  indicator: {
+    backgroundColor: "#1890ff",
+  },
+})(Tabs);
+
+const AntTab = withStyles((theme) => ({
+  root: {
+    textTransform: "none",
+    minWidth: 72,
+    fontWeight: theme.typography.fontWeightMedium,
+    marginRight: theme.spacing(4),
+    fontFamily: [
+      "-apple-system",
+      "BlinkMacSystemFont",
+      '"Segoe UI"',
+      "Roboto",
+      '"Helvetica Neue"',
+      "Arial",
+      "sans-serif",
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(","),
+    "&:hover": {
+      color: "#40a9ff",
+      opacity: 1,
+    },
+    "&$selected": {
+      color: "#1890ff",
+      fontWeight: theme.typography.fontWeightMedium,
+    },
+    "&:focus": {
+      color: "#40a9ff",
+    },
+  },
+  selected: {},
+}))((props) => <Tab disableRipple {...props} />);
+
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-});
+  padding: {
+    padding: theme.spacing(1),
+  },
+  demo1: {
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
 
 export default function ProfileTabs({ children }) {
   const classes = useStyles();
@@ -21,22 +69,19 @@ export default function ProfileTabs({ children }) {
   };
 
   return (
-    <Paper className={classes.root}>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        indicatorColor="primary"
-        textColor="primary"
-        centered
-      >
-        <Tab component={Link} to={url} label="Обо мне" />
-        <Tab component={Link} to={`${url}/memes`} label="Мои мемы" />
-        <Tab
-          component={Link}
-          to={`${url}/settings`}
-          label="Настройки профиля"
-        />
-      </Tabs>
-    </Paper>
+    <div className={classes.root}>
+      <div className={classes.demo1}>
+        <AntTabs value={value} onChange={handleChange} aria-label="ant example" centered>
+          <AntTab component={Link} to={url} label="Обо мне" />
+          <AntTab component={Link} to={`${url}/memes`} label="Мои мемы" />
+          <AntTab
+            component={Link}
+            to={`${url}/settings`}
+            label="Настройки профиля"
+          />
+        </AntTabs>
+        <Typography className={classes.padding} />
+      </div>
+    </div>
   );
 }
