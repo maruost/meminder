@@ -10,6 +10,7 @@ import { useData } from "../DataContext/DataContext";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import FakeApi from "../utils/FakeApi";
+import s from "./signIn.module.scss";
 
 let schema = yup.object().shape({
   email: yup.string().email("Пожалуйста, введите действующий e-mail"),
@@ -38,42 +39,45 @@ const SignIn = ({ onHandleLogin, ...props }) => {
   });
 
   return (
-    <MainContainer {...props}>
-      <Typography component="h5" variant="subtitle1">
-        Вход. Введите E-mail и пароль
-      </Typography>
-      <Form onSubmit={formik.handleSubmit}>
-        <Input
-          id="email"
-          type="text"
-          label="E-mail"
-          name="email"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          required
-          error={formik.touched.email && Boolean(formik.errors.email)}
-          helperText={formik.touched.email && formik.errors.email}
-        />
-        <Input
-          id="password"
-          type="password"
-          label="Пароль"
-          name="password"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          required
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.touched.email && formik.errors.password}
-        />
-        <PrimaryButton color={!formik.isValid ? "default" : "primary"}>
-          Войти
-        </PrimaryButton>
+    <div className={s.signin}>
+      <h2 className={s.description}>Войди, чтобы свайпать мемы</h2>
+      <MainContainer {...props}>
         <Typography component="h5" variant="subtitle1">
-          Ещё нет аккаунта?
+          Вход. Введите E-mail и пароль
         </Typography>
-        <Link to="../auth">Зарегистрироваться</Link>
-      </Form>
-    </MainContainer>
+        <Form onSubmit={formik.handleSubmit}>
+          <Input
+            id="email"
+            type="text"
+            label="E-mail"
+            name="email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            required
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
+          />
+          <Input
+            id="password"
+            type="password"
+            label="Пароль"
+            name="password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            required
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.email && formik.errors.password}
+          />
+          <PrimaryButton color={!formik.isValid ? "default" : "primary"}>
+            Войти
+          </PrimaryButton>
+          <Typography component="h5" variant="subtitle1">
+            Ещё нет аккаунта?
+          </Typography>
+          <Link to="../auth">Зарегистрироваться</Link>
+        </Form>
+      </MainContainer>
+    </div>
   );
 };
 

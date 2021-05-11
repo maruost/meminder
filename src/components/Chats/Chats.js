@@ -109,7 +109,7 @@ function Chats({ ...props }) {
   ];
   return (
     <section className={s.chats}>
-      <h4 className={s.title}>Ваши пары</h4>
+      <h4 className={s.title}>Твои пары</h4>
       <div className={s.matches}>
         <Carousel
           slidesToShow={7}

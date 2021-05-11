@@ -20,7 +20,7 @@ export const MainContainer = ({ children, ...props }) => {
   return (
     <Container
       component="main"
-      maxWidth="xs"
+      maxWidth="s"
       className={styles.root}
       {...props}
     >

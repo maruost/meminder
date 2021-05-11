@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ChatMessage from "../ChatMessage/ChatMessage";
 import { Send } from "@material-ui/icons/";
-import { IconButton } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import s from "./chatScreen.module.scss";
 
 const messagesData = {
@@ -25,6 +25,7 @@ function ChatScreen({ ...props }) {
   const id = pathArr[2];
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState(initailMessages);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const handleBackButton = (path) => {
     props.onHandleBackButton(path);
@@ -47,10 +48,16 @@ function ChatScreen({ ...props }) {
     console.log(messageToSend);
     setMessages([...messages, messageToSend]);
     setMessage("");
+    setIsDisabled(true);
   };
 
   const handleChange = (e) => {
     setMessage(e.target.value);
+    if (e.target.value === "") {
+      setIsDisabled(true);
+    } else {
+      setIsDisabled(false);
+    }
   };
 
   return (
@@ -79,7 +86,9 @@ function ChatScreen({ ...props }) {
             onChange={handleChange}
             value={message}
           />
-          <input type="submit" />
+          <Button variant="outlined" type="submit" disabled={isDisabled}>
+            Отправить
+          </Button>
         </form>
       </div>
     </div>

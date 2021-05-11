@@ -21,6 +21,7 @@ import { useData } from "../DataContext/DataContext";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import moment from "moment";
+import s from "./step2.module.scss";
 
 let schema = yup.object().shape({
   firstName: yup
@@ -68,167 +69,169 @@ export const Step2 = ({ ...props }) => {
   });
 
   return (
-    <MainContainer {...props}>
-      <Typography component="h5" variant="subtitle1">
-        Шаг 2: Расскажи немного о себе
-      </Typography>
-      <Form onSubmit={formik.handleSubmit}>
-        <Input
-          id="firstName"
-          type="text"
-          label="Имя"
-          name="firstName"
-          value={formik.values.firstName}
-          onChange={formik.handleChange}
-          required
-          error={formik.touched.firstName && Boolean(formik.errors.firstName)}
-          helperText={formik.touched.firstName && formik.errors.firstName}
-        />
-        <Input
-          id="lastName"
-          type="text"
-          label="Фамилия"
-          name="lastName"
-          value={formik.values.lastName}
-          onChange={formik.handleChange}
-          required
-          error={formik.touched.lastName && Boolean(formik.errors.lastName)}
-          helperText={formik.touched.lastName && formik.errors.lastName}
-        />
-        <Input
-          id="date"
-          label="Дата рождения"
-          type="date"
-          name="date"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          value={formik.values.date}
-          onChange={formik.handleChange}
-          required
-          error={formik.touched.date && Boolean(formik.errors.date)}
-          helperText={formik.touched.date && formik.errors.date}
-        />
-        <FormControl component="fieldset">
-          <FormLabel component="legend">Твой пол</FormLabel>
-          <RadioGroup
-            row
-            aria-label="gender"
-            name="gender"
-            value={formik.values.gender || ""}
+    <div className={s.step}>
+      <MainContainer {...props}>
+        <Typography component="h5" variant="subtitle1">
+          Шаг 2: Расскажи немного о себе
+        </Typography>
+        <Form onSubmit={formik.handleSubmit}>
+          <Input
+            id="firstName"
+            type="text"
+            label="Имя"
+            name="firstName"
+            value={formik.values.firstName}
             onChange={formik.handleChange}
             required
-            error={formik.touched.gender && Boolean(formik.errors.gender)}
-            helperText={formik.touched.gender && formik.errors.gender}
-          >
-            <FormControlLabel
-              value="female"
-              control={<Radio />}
-              label="Женщина"
-            />
-            <FormControlLabel
-              value="male"
-              control={<Radio />}
-              label="Мужчина"
-            />
-            <FormControlLabel
-              value="other"
-              control={<Radio />}
-              label="Другое"
-            />
-          </RadioGroup>
-        </FormControl>
-        <FormControl component="fieldset">
-          <FormLabel component="legend">Кого ты ищещь?</FormLabel>
-          <RadioGroup
-            row
-            aria-label="searchingGender"
-            name="searchingGender"
-            value={formik.values.searchingGender}
+            error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+            helperText={formik.touched.firstName && formik.errors.firstName}
+          />
+          <Input
+            id="lastName"
+            type="text"
+            label="Фамилия"
+            name="lastName"
+            value={formik.values.lastName}
             onChange={formik.handleChange}
             required
-            error={
-              formik.touched.searchingGender &&
-              Boolean(formik.errors.searchingGender)
-            }
-            helperText={
-              formik.touched.searchingGender && formik.errors.searchingGender
-            }
-          >
-            <FormControlLabel
-              value="female"
-              control={<Radio />}
-              label="Женщина"
-            />
-            <FormControlLabel
-              value="male"
-              control={<Radio />}
-              label="Мужчина"
-            />
-            <FormControlLabel
-              value="other"
-              control={<Radio />}
-              label="Другое"
-            />
-            <FormControlLabel value="all" control={<Radio />} label="Любой" />
-          </RadioGroup>
-        </FormControl>
-        <Input
-          id="location"
-          type="text"
-          label="Город"
-          name="location"
-          value={formik.values.location}
-          onChange={formik.handleChange}
-          error={formik.touched.location && Boolean(formik.errors.location)}
-          helperText={formik.touched.location && formik.errors.location}
-        />
-        <FormControlLabel
-          control={
-            <Switch
-              checked={
-                formik.values.location ? formik.values.locationToFind : null
-              }
-              name="locationToFind"
-              value={formik.values.locationToFind}
+            error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+            helperText={formik.touched.lastName && formik.errors.lastName}
+          />
+          <Input
+            id="date"
+            label="Дата рождения"
+            type="date"
+            name="date"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={formik.values.date}
+            onChange={formik.handleChange}
+            required
+            error={formik.touched.date && Boolean(formik.errors.date)}
+            helperText={formik.touched.date && formik.errors.date}
+          />
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Твой пол</FormLabel>
+            <RadioGroup
+              row
+              aria-label="gender"
+              name="gender"
+              value={formik.values.gender || ""}
               onChange={formik.handleChange}
+              required
+              error={formik.touched.gender && Boolean(formik.errors.gender)}
+              helperText={formik.touched.gender && formik.errors.gender}
+            >
+              <FormControlLabel
+                value="female"
+                control={<Radio />}
+                label="Женщина"
+              />
+              <FormControlLabel
+                value="male"
+                control={<Radio />}
+                label="Мужчина"
+              />
+              <FormControlLabel
+                value="other"
+                control={<Radio />}
+                label="Другое"
+              />
+            </RadioGroup>
+          </FormControl>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Кого ты ищещь?</FormLabel>
+            <RadioGroup
+              row
+              aria-label="searchingGender"
+              name="searchingGender"
+              value={formik.values.searchingGender}
+              onChange={formik.handleChange}
+              required
               error={
-                formik.touched.locationToFind &&
-                Boolean(formik.errors.locationToFind)
+                formik.touched.searchingGender &&
+                Boolean(formik.errors.searchingGender)
               }
               helperText={
-                formik.touched.locationToFind && formik.errors.locationToFind
+                formik.touched.searchingGender && formik.errors.searchingGender
               }
-              disabled={formik.values.location ? false : true}
-            />
-          }
-          label="Ты хочешь найти пару в твоём городе?"
-        />
-        <TextareaAutosize
-          aria-label="empty textarea"
-          placeholder="Здесь можешь написать немного о себе"
-          name="about"
-          rowsMax={8}
-          value={formik.values.about}
-          onChange={formik.handleChange}
-        />
-        <PrimaryButton color={!formik.isValid ? "default" : "primary"}>
-          Дальше
-        </PrimaryButton>
-        <PrimaryButton
-          color="default"
-          type="button"
-          onClick={() => {
-            history.goBack();
-          }}
-        >
-          Назад
-        </PrimaryButton>
-        <Typography component="h5" variant="subtitle1">
-          Уже есть аккаунт?
-        </Typography>
-        <Link to="../signin">Войти</Link>
-      </Form>
-    </MainContainer>
+            >
+              <FormControlLabel
+                value="female"
+                control={<Radio />}
+                label="Женщина"
+              />
+              <FormControlLabel
+                value="male"
+                control={<Radio />}
+                label="Мужчина"
+              />
+              <FormControlLabel
+                value="other"
+                control={<Radio />}
+                label="Другое"
+              />
+              <FormControlLabel value="all" control={<Radio />} label="Любой" />
+            </RadioGroup>
+          </FormControl>
+          <Input
+            id="location"
+            type="text"
+            label="Город"
+            name="location"
+            value={formik.values.location}
+            onChange={formik.handleChange}
+            error={formik.touched.location && Boolean(formik.errors.location)}
+            helperText={formik.touched.location && formik.errors.location}
+          />
+          <FormControlLabel
+            control={
+              <Switch
+                checked={
+                  formik.values.location ? formik.values.locationToFind : null
+                }
+                name="locationToFind"
+                value={formik.values.locationToFind}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.locationToFind &&
+                  Boolean(formik.errors.locationToFind)
+                }
+                helperText={
+                  formik.touched.locationToFind && formik.errors.locationToFind
+                }
+                disabled={formik.values.location ? false : true}
+              />
+            }
+            label="Ты хочешь найти пару в твоём городе?"
+          />
+          <TextareaAutosize
+            aria-label="empty textarea"
+            placeholder="Здесь можешь написать немного о себе"
+            name="about"
+            rowsMax={8}
+            value={formik.values.about}
+            onChange={formik.handleChange}
+          />
+          <PrimaryButton color={!formik.isValid ? "default" : "primary"}>
+            Дальше
+          </PrimaryButton>
+          <PrimaryButton
+            color="default"
+            type="button"
+            onClick={() => {
+              history.goBack();
+            }}
+          >
+            Назад
+          </PrimaryButton>
+          <Typography component="h5" variant="subtitle1">
+            Уже есть аккаунт?
+          </Typography>
+          <Link to="../signin">Войти</Link>
+        </Form>
+      </MainContainer>
+    </div>
   );
 };
