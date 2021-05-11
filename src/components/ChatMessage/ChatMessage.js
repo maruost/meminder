@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ChatMessage({ className, name, avatar, timestamp, message }) {
+function ChatMessage({ className, name, avatar, timestamp, message, index }) {
   const classes = useStyles();
   const [initials, setInitials] = useState();
 
@@ -29,7 +29,7 @@ function ChatMessage({ className, name, avatar, timestamp, message }) {
   }, [name]);
 
   return (
-    <div className={className}>
+    <div className={className} style={{ order: -index }}>
       {avatar ? (
         <Avatar alt={name} src={avatar} className={classes.medium}>
           {initials}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ChatMessage from "../ChatMessage/ChatMessage";
 import { Send } from "@material-ui/icons/";
 import { IconButton } from "@material-ui/core";
-import "./chatScreen.css";
+import s from "./chatScreen.module.scss";
 
 const messagesData = {
   name: "John Sallivan",
@@ -54,35 +54,34 @@ function ChatScreen({ ...props }) {
   };
 
   return (
-    <div className="chatScreen">
-      <div className="chatScreen__messages">
-        {messages.map((msg) => {
-          return (
-            <ChatMessage
-              className={id === msg.owner ? "chatMessage" : "chatUserMessage"}
-              message={msg.message}
-              timestamp={msg.messageCreatedAt}
-              name={messagesData.name}
-              avatar={id === msg.owner ? messagesData.avatar : null}
-            />
-          );
-        })}
+    <div className={s.chatScreen}>
+      <div className={s.box}>
+        <div className={s.messages}>
+          {messages.map((msg, index) => {
+            return (
+              <ChatMessage
+                className={id === msg.owner ? "chatMessage" : "chatUserMessage"}
+                message={msg.message}
+                timestamp={msg.messageCreatedAt}
+                name={messagesData.name}
+                avatar={id === msg.owner ? messagesData.avatar : null}
+                index={index}
+              />
+            );
+          })}
+        </div>
+        <form id="sendForm" className={s["send-box"]} onSubmit={handleSubmit}>
+          <input
+            className={s["send-field"]}
+            type="text"
+            name="send"
+            placeholder="Напиши сообщение..."
+            onChange={handleChange}
+            value={message}
+          />
+          <input type="submit" />
+        </form>
       </div>
-      <form
-        id="sendForm"
-        className="chatScreen__sendBox"
-        onSubmit={handleSubmit}
-      >
-        <input
-          className="chatScreen__sendField"
-          type="text"
-          name="send"
-          placeholder="Напиши сообщение..."
-          onChange={handleChange}
-          value={message}
-        />
-        <input type="submit" />
-      </form>
     </div>
   );
 }
