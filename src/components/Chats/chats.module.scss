@@ -1,7 +1,6 @@
 .chats {
-  width: 60%;
+  width: 100%;
   margin: 0 auto;
-  height: 80vh;
 }
 
 .items {
@@ -15,7 +14,7 @@
 }
 
 .dialogs {
-  height: 65vh;
+  height: 60vh;
   width: 100%;
   overflow-y: scroll;
   display: flex;

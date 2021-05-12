@@ -1,3 +1,16 @@
 .step {
-    height: 60vh;
+  text-align: start;
+}
+
+.title {
+  text-align: center;
+}
+
+.input {
+  height: 10px;
+}
+
+.location {
+  display: flex;
+  justify-content: space-between;
 }

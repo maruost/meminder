@@ -1,6 +1,6 @@
-import { TextField, Typography } from "@material-ui/core";
-import { useRouteMatch, Route, Link } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import { Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import React from "react";
 import { Form } from "../Form";
 import { Input } from "../Input";
 import { MainContainer } from "../MainContainer";
@@ -13,8 +13,11 @@ import FakeApi from "../utils/FakeApi";
 import s from "./signIn.module.scss";
 
 let schema = yup.object().shape({
-  email: yup.string().email("Пожалуйста, введите действующий e-mail"),
-  password: yup.string(),
+  email: yup
+    .string()
+    .email("Пожалуйста, введите действующий e-mail")
+    .required("Поле обязательно должно быть заполнено"),
+  password: yup.string().required("Поле обязательно должно быть заполнено"),
 });
 
 const SignIn = ({ onHandleLogin, ...props }) => {
@@ -43,7 +46,7 @@ const SignIn = ({ onHandleLogin, ...props }) => {
       <h2 className={s.description}>Войди, чтобы свайпать мемы</h2>
       <MainContainer {...props}>
         <Typography component="h5" variant="subtitle1">
-          Вход. Введите E-mail и пароль
+          Вход. Введи E-mail и пароль
         </Typography>
         <Form onSubmit={formik.handleSubmit}>
           <Input
@@ -71,11 +74,15 @@ const SignIn = ({ onHandleLogin, ...props }) => {
           <PrimaryButton color={!formik.isValid ? "default" : "primary"}>
             Войти
           </PrimaryButton>
+        </Form>
+        <div className={s["text-box"]}>
           <Typography component="h5" variant="subtitle1">
             Ещё нет аккаунта?
           </Typography>
-          <Link to="../auth">Зарегистрироваться</Link>
-        </Form>
+          <Link to="../auth" className={s.link}>
+            Зарегистрироваться
+          </Link>
+        </div>
       </MainContainer>
     </div>
   );

@@ -1,26 +1,15 @@
-import { TextField, Typography } from "@material-ui/core";
-import { useRouteMatch, Route, Link } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import { Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import React from "react";
 import { Form } from "../Form";
 import { Input } from "../Input";
 import { MainContainer } from "../MainContainer";
 import { PrimaryButton } from "../PrimaryButton";
 import { useHistory } from "react-router-dom";
 import { useData } from "../DataContext/DataContext";
-import * as yup from "yup";
 import { useFormik } from "formik";
 import s from "./step1.module.scss";
-
-let schema = yup.object().shape({
-  email: yup
-    .string()
-    .email("Пожалуйста, введите действующий e-mail")
-    .required("Поле обязательно должно быть заполнено"),
-  password: yup
-    .string()
-    .min(8, "Минимум 8 символов")
-    .required("Поле обязательно должно быть заполнено"),
-});
+import { EntryDataSchema } from "./schemas";
 
 export const Step1 = ({ ...props }) => {
   const history = useHistory();
@@ -30,7 +19,7 @@ export const Step1 = ({ ...props }) => {
       email: "",
       password: "",
     },
-    validationSchema: schema,
+    validationSchema: EntryDataSchema,
     onSubmit: (data) => {
       console.log(data);
       if (data) {
@@ -42,6 +31,7 @@ export const Step1 = ({ ...props }) => {
 
   return (
     <div className={s.step}>
+      <h2 className={s.description}>Создай аккаунт, чтобы свайпать мемы</h2>
       <MainContainer {...props}>
         <Typography component="h5" variant="subtitle1">
           Регистрация. Шаг 1: E-mail, Пароль
@@ -72,13 +62,15 @@ export const Step1 = ({ ...props }) => {
           <PrimaryButton color={!formik.isValid ? "default" : "primary"}>
             Дальше
           </PrimaryButton>
+        </Form>
+        <div className={s["text-box"]}>
           <Typography component="h5" variant="subtitle1">
             Уже есть аккаунт?
           </Typography>
           <Link to="./signin" className={s.link}>
             Войти
           </Link>
-        </Form>
+        </div>
       </MainContainer>
     </div>
   );

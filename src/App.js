@@ -1,4 +1,6 @@
-import "./App.css";
+import s from "./app.module.scss";
+import m from "./main.module.scss";
+import "./static/fonts/fonts.css";
 import { React, useState, useMemo, createRef, useEffect } from "react";
 import { Switch, Route, useHistory, Redirect } from "react-router-dom";
 import Header from "./components/Header/Header";
@@ -92,9 +94,9 @@ function App() {
     setBackButton(path);
   };
   return (
-    <div className="App">
+    <div className={s.app}>
       <Header backButton={backButton} loggedIn={loggedIn} />
-      <main>
+      <main className={m.main}>
         <Switch>
           <ProtectedRoute
             path="/chats/:person"

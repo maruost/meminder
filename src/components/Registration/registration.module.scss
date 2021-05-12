@@ -1,10 +1,11 @@
-.registration {
-    width: 60%;
-    margin: 0 auto;
-    text-align: center;
-    height: 75vh;
-    display: flex;
-    flex-direction: column;
-}
+$font: "Roboto", Helvetica, Arial, sans-serif;
 
-  
+.registration {
+  width: 100%;
+  margin: 40px auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-family: $font;
+  flex: 1;
+}

@@ -16,7 +16,7 @@ function Header({ backButton, loggedIn, ...props }) {
             Meminder
           </Link>
           <Link to="/">
-            <img className={s.icon} src={logo} alt="meminder icon" />
+            <img className={s.icon} src={logo} alt="meminder icon"s />
           </Link>
           <div className={s["auth-box"]}>
             <Link to="/signin" className={`${s.link} ${s["text-link"]}`}>

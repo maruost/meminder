@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useHistory, Redirect, Link } from "react-router-dom";
+import React from "react";
+import { useHistory } from "react-router-dom";
 import DropZone from "../DropZone/DropZone";
 import { useFormik } from "formik";
 import { Form } from "../Form";
@@ -8,6 +8,7 @@ import { MainContainer } from "../MainContainer";
 import { Typography } from "@material-ui/core";
 import { useData } from "../DataContext/DataContext";
 import Swal from "sweetalert2";
+import s from "./step3.module.scss";
 
 function Step3({ onHandleLogin, ...props }) {
   const history = useHistory();
@@ -38,35 +39,33 @@ function Step3({ onHandleLogin, ...props }) {
   };
 
   return (
-    <MainContainer {...props}>
-      <Typography component="h5" variant="subtitle1">
-        Шаг 3: Загрузи свои любимые мемы
-      </Typography>
-      <Form onSubmit={formik.handleSubmit}>
-        <DropZone
-          name="files"
-          setFieldValue={formik.setFieldValue}
-          values={formik.values.files}
-          onHandleDeleteMeme={handleDeleteMeme}
-        />
-        <PrimaryButton color={!formik.isValid ? "default" : "primary"}>
-          Готово!
-        </PrimaryButton>
-        <PrimaryButton
-          color="default"
-          type="button"
-          onClick={() => {
-            history.goBack();
-          }}
-        >
-          Назад
-        </PrimaryButton>
+    <div className={s.step}>
+      <MainContainer {...props}>
         <Typography component="h5" variant="subtitle1">
-          Уже есть аккаунт?
+          Шаг 3: Загрузи свои любимые мемы
         </Typography>
-        <Link to="../signin">Войти</Link>
-      </Form>
-    </MainContainer>
+        <Form onSubmit={formik.handleSubmit}>
+          <DropZone
+            name="files"
+            setFieldValue={formik.setFieldValue}
+            values={formik.values.files}
+            onHandleDeleteMeme={handleDeleteMeme}
+          />
+          <PrimaryButton color={!formik.isValid ? "default" : "primary"}>
+            Готово!
+          </PrimaryButton>
+          <PrimaryButton
+            color="default"
+            type="button"
+            onClick={() => {
+              history.goBack();
+            }}
+          >
+            Назад
+          </PrimaryButton>
+        </Form>
+      </MainContainer>
+    </div>
   );
 }
 

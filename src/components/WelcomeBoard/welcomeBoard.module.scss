@@ -1,0 +1,33 @@
+$font: "Roboto", Helvetica, Arial, sans-serif;
+
+.welcomeBoard {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  font-family: $font;
+  margin: 0 40px;
+}
+
+.title {
+  font-family: $font;
+  font-weight: 700;
+  font-size: 42px;
+  text-align: justify;
+  margin: 0 0;
+  margin-bottom: 20px;
+}
+
+.about {
+  font-family: $font;
+  font-weight: 400;
+  line-height: 1.5;
+  font-size: 18px;
+  text-align: justify;
+  margin: 0 0;
+  margin-bottom: 15px;
+}
+
+.button {
+  font-weight: 200;
+}

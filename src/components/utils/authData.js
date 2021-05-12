@@ -1,8 +1,14 @@
-
 const authData = {
+  _id: "ef234padk",
   email: "useruser@yandex.ru",
   password: "12345678",
-  _id: "ef234padk",
+  firstName: "Иван",
+  lastName: "Иванов",
+  date: "1994-04-28",
+  gender: "male",
+  searchingGender: "female",
+  location: "Москва",
+  locationToFind: true,
 };
 
 export default authData;

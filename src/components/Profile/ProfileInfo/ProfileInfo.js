@@ -17,6 +17,7 @@ import {
 import moment from "moment";
 import { PrimaryButton } from "../../PrimaryButton";
 import s from "./profileInfo.module.scss";
+import authData from "../../utils/authData";
 
 let schema = yup.object().shape({
   firstName: yup
@@ -44,17 +45,18 @@ let schema = yup.object().shape({
 function ProfileInfo() {
   const formik = useFormik({
     initialValues: {
-      firstName: "DFDFGDFG",
-      lastName: "DFGD",
-      date: "23-03-1996",
-      gender: "female",
-      searchingGender: "male",
-      location: "Moscow",
-      locationToFind: false,
-      about: "aaaa",
+      firstName: authData.firstName,
+      lastName: authData.lastName,
+      date: authData.date,
+      gender: authData.gender,
+      searchingGender: authData.searchingGender,
+      location: authData.location,
+      locationToFind: authData.locationToFind,
+      about: authData.about,
     },
     validationSchema: schema,
     onSubmit: (data) => {
+      console.log(data);
       //   history.push("/step3");
       // setValues(data);
     },
@@ -115,17 +117,17 @@ function ProfileInfo() {
           >
             <FormControlLabel
               value="female"
-              control={<Radio />}
+              control={<Radio color="default" />}
               label="Женщина"
             />
             <FormControlLabel
               value="male"
-              control={<Radio />}
+              control={<Radio color="default" />}
               label="Мужчина"
             />
             <FormControlLabel
               value="other"
-              control={<Radio />}
+              control={<Radio color="default" />}
               label="Другое"
             />
           </RadioGroup>
@@ -149,22 +151,22 @@ function ProfileInfo() {
           >
             <FormControlLabel
               value="female"
-              control={<Radio />}
+              control={<Radio color="default" />}
               label="Женщину"
             />
             <FormControlLabel
               value="male"
-              control={<Radio />}
+              control={<Radio color="default" />}
               label="Мужчину"
             />
             <FormControlLabel
               value="other"
-              control={<Radio />}
+              control={<Radio color="default" />}
               label="Другое"
             />
             <FormControlLabel
               value="all"
-              control={<Radio />}
+              control={<Radio color="default" />}
               label="Пол не важен"
             />
           </RadioGroup>
@@ -197,6 +199,7 @@ function ProfileInfo() {
                   formik.touched.locationToFind && formik.errors.locationToFind
                 }
                 disabled={formik.values.location ? false : true}
+                color="primary"
               />
             }
             label="Искать пару в моём городе"

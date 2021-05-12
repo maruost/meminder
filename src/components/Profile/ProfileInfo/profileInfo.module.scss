@@ -3,16 +3,17 @@
   justify-content: space-between;
   flex-direction: column;
   align-items: start;
-  height: 75vh;
 }
 
 .text-area {
   display: block;
   width: 100%;
   min-height: 50px;
+  max-height: 80px;
   box-sizing: border-box;
   border: 1px solid lightgray;
   border-radius: 4px;
+  overflow-y: auto;
 }
 
 .form {

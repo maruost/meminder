@@ -1,9 +1,15 @@
 import React, { useEffect } from "react";
 import Dropzone from "react-dropzone";
-import { Paper, List, ListItem, ListItemText } from "@material-ui/core";
+import {
+  Paper,
+  List,
+  ListItem,
+  ListItemText,
+  IconButton,
+} from "@material-ui/core";
 import { CloudUpload } from "@material-ui/icons";
 import { DeleteOutline } from "@material-ui/icons";
-import "./dropZone.css";
+import s from "./dropZone.module.scss";
 
 function DropZone({
   name,
@@ -20,7 +26,7 @@ function DropZone({
   );
 
   return (
-    <div>
+    <div className={s.main}>
       <Dropzone
         multiple={true}
         accept="image/jpeg, image/png"
@@ -34,28 +40,39 @@ function DropZone({
         }}
       >
         {({ getRootProps, getInputProps }) => (
-          <Paper variant="outlined" {...getRootProps()}>
-            <CloudUpload />
+          <div {...getRootProps()} className={s.zone}>
+            <IconButton>
+              <CloudUpload />
+            </IconButton>
             <input {...getInputProps()} name="files" />
-            <p>Перетащи изображения сюда, или нажми, чтобы выбрать файлы</p>
-          </Paper>
+            <p className={s.text}>
+              Перетащи изображения сюда или нажми, чтобы выбрать файлы
+            </p>
+          </div>
         )}
       </Dropzone>
-      <List>
-        {values.map((f, index) => (
-          <ListItem key={f.name}>
-            <img src={f.preview} width="50px" height="50px" alt="файл" />
-            <ListItemText primary={f.name} secondary={f.size} />
-            <button
-              className="dropzone__deleteBtn"
-              type="button"
-              onClick={onHandleDeleteMeme}
-            >
-              <DeleteOutline />
-            </button>
-          </ListItem>
-        ))}
-      </List>
+      <div className={s.images}>
+        <List>
+          {values.map((f, index) => (
+            <ListItem key={f.name}>
+              <img src={f.preview} alt="файл" className={s.preview} />
+              <ListItemText
+                primary={f.name}
+                secondary={`${(f.size / 1000).toFixed(2)}KB`}
+              />
+              <button
+                className={s["delete-btn"]}
+                type="button"
+                onClick={onHandleDeleteMeme}
+              >
+                <IconButton>
+                  <DeleteOutline />
+                </IconButton>
+              </button>
+            </ListItem>
+          ))}
+        </List>
+      </div>
     </div>
   );
 }

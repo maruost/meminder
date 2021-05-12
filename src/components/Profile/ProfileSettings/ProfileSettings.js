@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { PrimaryButton } from "../../PrimaryButton";
 import { Domain } from "@material-ui/icons";
 import s from "./profileSettings.module.scss";
+import authData from "../../utils/authData";
 
 let schema = yup.object().shape({
   email: yup
@@ -26,7 +27,7 @@ function ProfileSettings({ ...props }) {
   const history = useHistory();
   const formik = useFormik({
     initialValues: {
-      email: "msmsmmsdm@yandex.ru",
+      email: authData.email,
       oldPassword: "",
       newPassword: "",
     },

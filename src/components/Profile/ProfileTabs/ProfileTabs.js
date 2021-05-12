@@ -4,6 +4,7 @@ import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
+import s from "./profileTabs.module.scss";
 
 const AntTabs = withStyles({
   root: {
@@ -20,18 +21,7 @@ const AntTab = withStyles((theme) => ({
     minWidth: 72,
     fontWeight: theme.typography.fontWeightMedium,
     marginRight: theme.spacing(4),
-    fontFamily: [
-      "-apple-system",
-      "BlinkMacSystemFont",
-      '"Segoe UI"',
-      "Roboto",
-      '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(","),
+    fontFamily: ["Roboto", '"Helvetica Neue"', "Arial", "sans-serif"].join(","),
     "&:hover": {
       color: "#40a9ff",
       opacity: 1,
@@ -71,13 +61,24 @@ export default function ProfileTabs({ children }) {
   return (
     <div className={classes.root}>
       <div className={classes.demo1}>
-        <AntTabs value={value} onChange={handleChange} aria-label="ant example" centered>
-          <AntTab component={Link} to={url} label="Обо мне" />
-          <AntTab component={Link} to={`${url}/memes`} label="Мои мемы" />
+        <AntTabs
+          value={value}
+          onChange={handleChange}
+          aria-label="ant example"
+          centered
+        >
+          <AntTab component={Link} to={url} label="Обо мне" className={s.tab} />
+          <AntTab
+            component={Link}
+            to={`${url}/memes`}
+            label="Мои мемы"
+            className={s.tab}
+          />
           <AntTab
             component={Link}
             to={`${url}/settings`}
             label="Настройки профиля"
+            className={s.tab}
           />
         </AntTabs>
         <Typography className={classes.padding} />
