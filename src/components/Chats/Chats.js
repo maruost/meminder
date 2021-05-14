@@ -8,6 +8,8 @@ import leftArrowIcon from "../../static/images/left-arrow-dark.svg";
 import rightArrowIcon from "../../static/images/right-arrow-dark.svg";
 import ChatScreen from "../ChatScreen/ChatScreen";
 import s from "./chats.module.scss";
+import matches from "../utils/matches";
+import chats from "../utils/chats";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,73 +42,6 @@ function Chats({ ...props }) {
     };
   }, []);
 
-  const chatsArray = [
-    {
-      name: "John Sallivan",
-      _id: "sdfsdfsdfawq",
-      message: "hey yo",
-      timestamp: "2 sec ago",
-      avatar: "https://tsh.io/wp-content/uploads/2019/12/react-meme1_.png",
-    },
-    {
-      name: "Erick Debouted",
-      _id: "sdhshshan87678",
-      message: "haha nice meme",
-      timestamp: "3 min ago",
-    },
-    {
-      name: "John Sallivan",
-      _id: "sdfsdfsdfawq",
-      message: "hey yo",
-      timestamp: "2 sec ago",
-      avatar: "https://tsh.io/wp-content/uploads/2019/12/react-meme1_.png",
-    },
-    {
-      name: "Erick Debouted",
-      _id: "sdhshshan87678",
-      message: "haha nice meme",
-      timestamp: "3 min ago",
-    },
-    {
-      name: "John Sallivan",
-      _id: "sdfsdfsdfawq",
-      message: "hey yo",
-      timestamp: "2 sec ago",
-      avatar: "https://tsh.io/wp-content/uploads/2019/12/react-meme1_.png",
-    },
-    {
-      name: "Erick Debouted",
-      _id: "sdhshshan87678",
-      message: "haha nice meme",
-      timestamp: "3 min ago",
-    },
-    {
-      name: "John Sallivan",
-      _id: "sdfsdfsdfawq",
-      message: "hey yo",
-      timestamp: "2 sec ago",
-      avatar: "https://tsh.io/wp-content/uploads/2019/12/react-meme1_.png",
-    },
-    {
-      name: "Erick Debouted",
-      _id: "sdhshshan87678",
-      message: "haha nice meme",
-      timestamp: "3 min ago",
-    },
-    {
-      name: "John Sallivan",
-      _id: "sdfsdfsdfawq",
-      message: "hey yo",
-      timestamp: "2 sec ago",
-      avatar: "https://tsh.io/wp-content/uploads/2019/12/react-meme1_.png",
-    },
-    {
-      name: "Erick Debouted",
-      _id: "sdhshshan87678",
-      message: "haha nice meme",
-      timestamp: "3 min ago",
-    },
-  ];
   return (
     <section className={s.chats}>
       <h4 className={s.title}>Твои пары</h4>
@@ -147,10 +82,11 @@ function Chats({ ...props }) {
             </button>
           )}
         >
-          {chatsArray.map((person) => (
+          {matches.map((person) => (
             <div className={s["match-person"]}>
-              <Link to={`/chats/${person._id}`}>
-                <Avatar src={person.avatar} className={classes.large} />
+              <Link to={`/chats/${person._id}`} className={s.link}>
+                <Avatar src={person.files[0]} className={classes.large} />
+                <p className={s.name}>{person.firstName}</p>
               </Link>
             </div>
           ))}
@@ -159,15 +95,21 @@ function Chats({ ...props }) {
       <div className={s.items}>
         <h4 className={s.title}>Чаты</h4>
         <div className={s.dialogs}>
-          {chatsArray.map((chat) => (
-            <Chat
-              name={chat.name}
-              avatar={chat.avatar}
-              message={chat.message}
-              timestamp={chat.timestamp}
-              id={chat._id}
-            />
-          ))}
+          {chats.map((chat) => {
+            const name = chat.firstName + " " + chat.lastName;
+            const msgLen = chat.messages.length;
+            const lastMsg = chat.messages[msgLen - 1].message;
+            const timestamp = chat.messages[msgLen - 1].timestamp;
+            return (
+              <Chat
+                id={chat._id}
+                name={name}
+                avatar={chat.avatar}
+                message={lastMsg}
+                timestamp={timestamp}
+              />
+            );
+          })}
         </div>
       </div>
     </section>

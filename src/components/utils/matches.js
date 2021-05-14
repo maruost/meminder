@@ -7,36 +7,31 @@ import mem6 from "../../static/images/mems/mem6.png";
 import mem7 from "../../static/images/mems/mem7.png";
 import mem8 from "../../static/images/mems/mem8.png";
 
-// get data of users from Api, which is filtered by required papams
-const users = [
-  {
-    _id: "dgdgdgd111",
-    name: "Анастасия",
-    files: [mem1, mem2],
-  },
-  {
-    _id: "refer432",
-    name: "Андрей",
-    files: [mem3, mem4],
-  },
+// get data of matches from Api (Api checks our likes with liked users likes and return matched)
+
+const matches = [
   {
     _id: "sdsdcsddf78",
-    name: "Арина",
+    firstName: "Арина",
+    lastName: "Кузнецова",
     files: [mem5, mem6],
   },
   {
     _id: "asfdtgergerg9",
-    name: "Кристина",
+    firstName: "Кристина",
+    lastName: "Петрова",
     files: [mem7, mem8],
   },
   {
     _id: "sgthryjty0",
-    name: "Михаил",
+    firstName: "Михаил",
+    lastName: "Иванов",
     files: [mem8, mem4],
   },
   {
     _id: "afetrtbrrt8",
-    name: "Евгений",
+    firstName: "Евгений",
+    lastName: "Михайлов",
     files: [
       "https://tsh.io/wp-content/uploads/2019/12/react-meme1_.png",
       "https://inspirationfeed.com/wp-content/uploads/2020/05/Reaction-Meme-1.jpg",
@@ -44,4 +39,4 @@ const users = [
   },
 ];
 
-export default users;
+export default matches;

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import ChatMessage from "../ChatMessage/ChatMessage";
 import { Send } from "@material-ui/icons/";
 import { Button } from "@material-ui/core";
 import s from "./chatScreen.module.scss";
+import chats from "../utils/chats";
 
 const messagesData = {
   name: "John Sallivan",
@@ -21,8 +23,10 @@ const messagesData = {
 
 function ChatScreen({ ...props }) {
   const initailMessages = messagesData.messages;
-  const pathArr = window.location.pathname.split("/");
-  const id = pathArr[2];
+  // const pathArr = window.location.pathname.split("/");
+  // const id = pathArr[2];
+  let { id } = useParams();
+  console.log("id", id);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState(initailMessages);
   const [isDisabled, setIsDisabled] = useState(true);

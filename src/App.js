@@ -14,31 +14,32 @@ import SignIn from "./components/SignIn/SignIn";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import NotFound from "./components/NotFound/NotFound";
 import Footer from "./components/Footer/Footer";
+import users from "./components/utils/users";
 
-const db = [
-  {
-    _id: "dgdgdgd111",
-    name: "Maria Ostapenko",
-    memes: [
-      "https://i.guim.co.uk/img/media/327e46c3ab049358fad80575146be9e0e65686e7/0_0_1023_742/master/1023.jpg?width=445&quality=45&auto=format&fit=max&dpr=2&s=331a1bc4f5d7a96a6131f4f142065662",
-      "https://pbs.twimg.com/media/DtBjcBUWkAEW4bt.jpg:large",
-    ],
-  },
-  {
-    _id: "dgdgdgd11dd1",
-    name: "Masssssaaaa",
-    memes: [
-      "https://tsh.io/wp-content/uploads/2019/12/react-meme1_.png",
-      "https://inspirationfeed.com/wp-content/uploads/2020/05/Reaction-Meme-1.jpg",
-    ],
-  },
-];
+// const db = [
+//   {
+//     _id: "dgdgdgd111",
+//     name: "Maria Ostapenko",
+//     memes: [
+//       "https://i.guim.co.uk/img/media/327e46c3ab049358fad80575146be9e0e65686e7/0_0_1023_742/master/1023.jpg?width=445&quality=45&auto=format&fit=max&dpr=2&s=331a1bc4f5d7a96a6131f4f142065662",
+//       "https://pbs.twimg.com/media/DtBjcBUWkAEW4bt.jpg:large",
+//     ],
+//   },
+//   {
+//     _id: "dgdgdgd11dd1",
+//     name: "Masssssaaaa",
+//     memes: [
+//       "https://tsh.io/wp-content/uploads/2019/12/react-meme1_.png",
+//       "https://inspirationfeed.com/wp-content/uploads/2020/05/Reaction-Meme-1.jpg",
+//     ],
+//   },
+// ];
 
 const alreadyRemoved = [];
-let peopleState = db;
+let peopleState = users;
 
 function App() {
-  const [people, setPeople] = useState(db);
+  const [people, setPeople] = useState(users);
   const [lastDirection, setLastDirection] = useState();
   const [loggedIn, setLoggedIn] = useState(
     !!localStorage.getItem("token") || false
@@ -60,7 +61,7 @@ function App() {
 
   const childRefs = useMemo(
     () =>
-      Array(db.length)
+      Array(users.length)
         .fill(0)
         .map((i) => createRef()),
     []
@@ -84,7 +85,7 @@ function App() {
     );
     if (cardsLeft.length) {
       const toBeRemoved = cardsLeft[cardsLeft.length - 1].name; // Find the card object to be removed
-      const index = db.map((person) => person.name).indexOf(toBeRemoved); // Find the index of which to make the reference to
+      const index = users.map((person) => person.name).indexOf(toBeRemoved); // Find the index of which to make the reference to
       alreadyRemoved.push(toBeRemoved); // Make sure the next card gets removed next time if this card do not have time to exit the screen
       childRefs[index].current.swipe(dir); // Swipe the card!
     }

@@ -6,3 +6,23 @@
   width: 100%;
   margin: 20px auto;
 }
+
+.end {
+  position: absolute;
+  top: 320px;
+  right: 380px;
+  z-index: -100;
+  width: 190px;
+  text-align: center;
+  font-weight: 500;
+  animation: spin 5s linear 0s infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

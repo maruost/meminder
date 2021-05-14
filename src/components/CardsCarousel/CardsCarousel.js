@@ -51,7 +51,7 @@ function CardsCarousel({ person }) {
           </button>
         )}
       >
-        {person.memes.map((meme) => (
+        {person.files.map((meme) => (
           <Card name={person.name} meme={meme} />
         ))}
       </Carousel>

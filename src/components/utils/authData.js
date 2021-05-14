@@ -6,7 +6,7 @@ const authData = {
   lastName: "Иванов",
   date: "1994-04-28",
   gender: "male",
-  searchingGender: "female",
+  searchingGender: "all",
   location: "Москва",
   locationToFind: true,
 };

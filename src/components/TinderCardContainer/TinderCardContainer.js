@@ -9,15 +9,19 @@ function TinderCardContainer({
   onOutOfFrame,
   childRefs,
   index,
+  ...props
 }) {
   const handleSwiped = (dir) => {
     onSwiped(dir, person.name);
-    console.log(childRefs[index])
+    //if (dir === "right") {
+    // send request to Api to add to likes
+    // } else if (dir === "left") {
+    //  send request to Api to add to dislikes
+    // }
   };
 
   const handleOutOfFrame = () => {
     onOutOfFrame(person.name);
-    console.log(childRefs[index])
   };
 
   return (

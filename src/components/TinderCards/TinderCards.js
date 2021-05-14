@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import TinderCardContainer from "../TinderCardContainer/TinderCardContainer";
 import "./tinderCards.css";
 
-function TinderCards({ people, onSwiped, onOutOfFrame, childRefs }) {
+function TinderCards({ people, onSwiped, onOutOfFrame, childRefs, ...props }) {
   return (
     <div className="cards">
       {people.map((person, i) => (

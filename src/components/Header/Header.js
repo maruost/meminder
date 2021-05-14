@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, NavLink } from "react-router-dom";
 import { IconButton } from "@material-ui/core";
 import { Person, Forum, ArrowBackIos } from "@material-ui/icons";
 import s from "./header.module.scss";
@@ -16,15 +16,23 @@ function Header({ backButton, loggedIn, ...props }) {
             Meminder
           </Link>
           <Link to="/">
-            <img className={s.icon} src={logo} alt="meminder icon"s />
+            <img className={s.icon} src={logo} alt="meminder icon" s />
           </Link>
           <div className={s["auth-box"]}>
-            <Link to="/signin" className={`${s.link} ${s["text-link"]}`}>
+            <NavLink
+              to="/signin"
+              activeClassName={s["text-link_active"]}
+              className={`${s.link} ${s["text-link"]}`}
+            >
               Вход
-            </Link>
-            <Link to="/auth" className={`${s.link} ${s["text-link"]}`}>
+            </NavLink>
+            <NavLink
+              to="/auth"
+              activeClassName={s["text-link_active"]}
+              className={`${s.link} ${s["text-link"]}`}
+            >
               Регистрация
-            </Link>
+            </NavLink>
           </div>
         </div>
       </header>
