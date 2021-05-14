@@ -1,16 +1,23 @@
-.chatMessage {
+.chatMessage__wrapper {
   align-self: flex-start;
   margin-bottom: 10px;
-  display: flex;
-  align-content: center;
   padding-left: 10px;
 }
 
-.chatUserMessage {
+.chatUserMessage__wrapper {
   align-self: flex-end;
   margin-bottom: 10px;
   margin-right: 10px;
 }
+.chatMessage {
+  display: flex;
+  align-content: center;
+}
+
+/* .chatUserMessage {
+  margin-bottom: 10px;
+  margin-right: 10px;
+} */
 
 .chatMessage__box {
   display: flex;
@@ -26,6 +33,15 @@
   padding: 5px 10px;
   margin: 0 0 0 20px;
 }
+.chatMessage__timestamp {
+  font-size: 10px;
+  display: block;
+  color: gray;
+  padding: 0 0;
+  margin: 0 0;
+   margin-top: 2px;
+  text-align: end;
+}
 
 .chatUserMessage__text {
   background-color: blue;
@@ -35,4 +51,13 @@
   text-align: start;
   padding: 5px 10px;
   margin: 0 0;
+}
+
+.chatUserMessage__timestamp {
+  font-size: 10px;
+  color: gray;
+  padding: 0 0;
+  margin: 0 0;
+  margin-top: 5px;
+  text-align: end;
 }

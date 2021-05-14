@@ -5,6 +5,7 @@ import { Send } from "@material-ui/icons/";
 import { Button } from "@material-ui/core";
 import s from "./chatScreen.module.scss";
 import chats from "../../utils/chats";
+import moment, { now } from "moment";
 
 const messagesData = {
   name: "John Sallivan",
@@ -22,13 +23,11 @@ const messagesData = {
 };
 
 function ChatScreen({ ...props }) {
-  const initailMessages = messagesData.messages;
-  // const pathArr = window.location.pathname.split("/");
-  // const id = pathArr[2];
   let { id } = useParams();
-  console.log("id", id);
+  const userData = chats.find((chat) => chat._id === id);
+  const initialMessages = userData.messages;
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState(initailMessages);
+  const [messages, setMessages] = useState([]);
   const [isDisabled, setIsDisabled] = useState(true);
 
   const handleBackButton = (path) => {
@@ -37,6 +36,7 @@ function ChatScreen({ ...props }) {
 
   useEffect(() => {
     handleBackButton("/chats");
+    setMessages(initialMessages);
     return () => {
       handleBackButton(null);
     };
@@ -44,12 +44,12 @@ function ChatScreen({ ...props }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    let now = moment().hours() + ":" + moment().minutes();
     const messageToSend = {
+      creatorId: "ef234padk",
+      timestamp: now,
       message: message,
-      cratedAt: "12-12-12",
-      owner: "me",
     };
-    console.log(messageToSend);
     setMessages([...messages, messageToSend]);
     setMessage("");
     setIsDisabled(true);
@@ -64,23 +64,30 @@ function ChatScreen({ ...props }) {
     }
   };
 
+  const renderChatMessages = () => {
+    if (messages.length !== 0) {
+      return messages.map((msg, index) => {
+        return (
+          <ChatMessage
+            className={id === msg.creatorId ? "chatMessage" : "chatUserMessage"}
+            message={msg.message}
+            timestamp={msg.timestamp}
+            firstName={userData.firstName}
+            lastName={userData.lastName}
+            avatar={id === msg.creatorId ? userData.avatar : null}
+            index={index}
+          />
+        );
+      });
+    } else {
+      return <p className={s["default-message"]}>Сообщений ещё нет...</p>;
+    }
+  };
+
   return (
     <div className={s.chatScreen}>
       <div className={s.box}>
-        <div className={s.messages}>
-          {messages.map((msg, index) => {
-            return (
-              <ChatMessage
-                className={id === msg.owner ? "chatMessage" : "chatUserMessage"}
-                message={msg.message}
-                timestamp={msg.messageCreatedAt}
-                name={messagesData.name}
-                avatar={id === msg.owner ? messagesData.avatar : null}
-                index={index}
-              />
-            );
-          })}
-        </div>
+        <div className={s.messages}>{renderChatMessages()}</div>
         <form id="sendForm" className={s["send-box"]} onSubmit={handleSubmit}>
           <input
             className={s["send-field"]}

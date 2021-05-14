@@ -16,7 +16,7 @@ function ChatsPage({ ...props }) {
             <Chats {...props} />
           </>
         </Route>
-        <Route path={`${path}/:person`}>
+        <Route path={`${path}/:id`}>
           <ChatScreen {...props} />
         </Route>
       </Switch>

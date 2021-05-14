@@ -16,28 +16,36 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ChatMessage({ className, name, avatar, timestamp, message, index }) {
+function ChatMessage({
+  className,
+  firstName,
+  lastName,
+  avatar,
+  timestamp,
+  message,
+  index,
+}) {
   const classes = useStyles();
   const [initials, setInitials] = useState();
 
   useEffect(() => {
-    const initials = name
-      .split(" ")
-      .map((word) => word[0])
-      .join("");
+    const initials = firstName[0] + lastName[0];
     setInitials(initials);
-  }, [name]);
+  }, [firstName, lastName]);
 
   return (
-    <div className={className} style={{ order: -index }}>
-      {avatar ? (
-        <Avatar alt={name} src={avatar} className={classes.medium}>
-          {initials}
-        </Avatar>
-      ) : null}
-      <div className={`${className}__box`}>
-        <p className={`${className}__text`}>{message}</p>
+    <div className={`${className}__wrapper`} style={{ order: -index }}>
+      <div className={className}>
+        {avatar ? (
+          <Avatar alt={firstName} src={avatar} className={classes.medium}>
+            {initials}
+          </Avatar>
+        ) : null}
+        <div className={`${className}__box`}>
+          <p className={`${className}__text`}>{message}</p>
+        </div>
       </div>
+      <p className={`${className}__timestamp`}>{timestamp}</p>
     </div>
   );
 }
