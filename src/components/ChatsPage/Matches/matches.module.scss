@@ -1,0 +1,44 @@
+.title {
+  text-align: start;
+  font-weight: 500;
+  margin: 0 0;
+  margin-bottom: 15px;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.name {
+  margin: 0 0;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.matches {
+  width: 95%;
+  position: relative;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+
+.chats__match-nav {
+  position: absolute;
+  top: -10px;
+}
+
+.chats__match-nav.chats__match-nav_left {
+  position: absolute;
+  top: -10px;
+  left: -30px;
+}
+
+.chats__match-nav.chats__match-nav_right {
+  position: absolute;
+  top: -10px;
+  right: -30px;
+}

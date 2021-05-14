@@ -1,15 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, Route, Switch } from "react-router-dom";
-import Chat from "../Chat/Chat";
 import { makeStyles } from "@material-ui/core/styles";
 import Carousel from "nuka-carousel";
 import { Avatar } from "@material-ui/core";
-import leftArrowIcon from "../../static/images/left-arrow-dark.svg";
-import rightArrowIcon from "../../static/images/right-arrow-dark.svg";
-import ChatScreen from "../ChatScreen/ChatScreen";
-import s from "./chats.module.scss";
-import matches from "../utils/matches";
-import chats from "../utils/chats";
+import matches from "../../utils/matches";
+import leftArrowIcon from "../../../static/images/left-arrow-dark.svg";
+import rightArrowIcon from "../../../static/images/right-arrow-dark.svg";
+import s from "./matches.module.scss";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,20 +27,10 @@ const styleConfig = {
   },
 };
 
-function Chats({ ...props }) {
+function Matches({ ...props }) {
   const classes = useStyles();
-  const handleBackButton = (path) => {
-    props.onHandleBackButton(path);
-  };
-  useEffect(() => {
-    handleBackButton("/");
-    return () => {
-      handleBackButton(null);
-    };
-  }, []);
-
   return (
-    <section className={s.chats}>
+    <>
       <h4 className={s.title}>Твои пары</h4>
       <div className={s.matches}>
         <Carousel
@@ -92,28 +79,8 @@ function Chats({ ...props }) {
           ))}
         </Carousel>
       </div>
-      <div className={s.items}>
-        <h4 className={s.title}>Чаты</h4>
-        <div className={s.dialogs}>
-          {chats.map((chat) => {
-            const name = chat.firstName + " " + chat.lastName;
-            const msgLen = chat.messages.length;
-            const lastMsg = chat.messages[msgLen - 1].message;
-            const timestamp = chat.messages[msgLen - 1].timestamp;
-            return (
-              <Chat
-                id={chat._id}
-                name={name}
-                avatar={chat.avatar}
-                message={lastMsg}
-                timestamp={timestamp}
-              />
-            );
-          })}
-        </div>
-      </div>
-    </section>
+    </>
   );
 }
 
-export default Chats;
+export default Matches;

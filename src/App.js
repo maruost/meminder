@@ -7,33 +7,13 @@ import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import WelcomeBoard from "./components/WelcomeBoard/WelcomeBoard";
 import Registration from "./components/Registration/Registration";
-import Chats from "./components/Chats/Chats";
 import Profile from "./components/Profile/Profile";
-import ChatScreen from "./components/ChatScreen/ChatScreen";
 import SignIn from "./components/SignIn/SignIn";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import NotFound from "./components/NotFound/NotFound";
 import Footer from "./components/Footer/Footer";
 import users from "./components/utils/users";
-
-// const db = [
-//   {
-//     _id: "dgdgdgd111",
-//     name: "Maria Ostapenko",
-//     memes: [
-//       "https://i.guim.co.uk/img/media/327e46c3ab049358fad80575146be9e0e65686e7/0_0_1023_742/master/1023.jpg?width=445&quality=45&auto=format&fit=max&dpr=2&s=331a1bc4f5d7a96a6131f4f142065662",
-//       "https://pbs.twimg.com/media/DtBjcBUWkAEW4bt.jpg:large",
-//     ],
-//   },
-//   {
-//     _id: "dgdgdgd11dd1",
-//     name: "Masssssaaaa",
-//     memes: [
-//       "https://tsh.io/wp-content/uploads/2019/12/react-meme1_.png",
-//       "https://inspirationfeed.com/wp-content/uploads/2020/05/Reaction-Meme-1.jpg",
-//     ],
-//   },
-// ];
+import ChatsPage from "./components/ChatsPage/ChatsPage";
 
 const alreadyRemoved = [];
 let peopleState = users;
@@ -100,16 +80,10 @@ function App() {
       <main className={m.main}>
         <Switch>
           <ProtectedRoute
-            path="/chats/:person"
-            loggedIn={loggedIn}
-            onHandleBackButton={handleBackButton}
-            component={ChatScreen}
-          />
-          <ProtectedRoute
             path="/chats"
             loggedIn={loggedIn}
             onHandleBackButton={handleBackButton}
-            component={Chats}
+            component={ChatsPage}
           />
           <ProtectedRoute
             path="/profile"

@@ -4,7 +4,7 @@ import ChatMessage from "../ChatMessage/ChatMessage";
 import { Send } from "@material-ui/icons/";
 import { Button } from "@material-ui/core";
 import s from "./chatScreen.module.scss";
-import chats from "../utils/chats";
+import chats from "../../utils/chats";
 
 const messagesData = {
   name: "John Sallivan",
