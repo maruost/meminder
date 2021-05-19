@@ -13,26 +13,31 @@ const users = [
     _id: "dgdgdgd111",
     name: "Анастасия",
     files: [mem1, mem2],
+    likes: ["sdsdcsddf78", "ef234padk"],
   },
   {
     _id: "refer432",
     name: "Андрей",
     files: [mem3, mem4],
+    likes: ["ef234padk"],
   },
   {
     _id: "sdsdcsddf78",
     name: "Арина",
     files: [mem5, mem6],
+    likes: [],
   },
   {
     _id: "asfdtgergerg9",
     name: "Кристина",
     files: [mem7, mem8],
+    likes: ["ef234padk"],
   },
   {
     _id: "sgthryjty0",
     name: "Михаил",
     files: [mem8, mem4],
+    likes: [],
   },
   {
     _id: "afetrtbrrt8",
@@ -41,6 +46,7 @@ const users = [
       "https://tsh.io/wp-content/uploads/2019/12/react-meme1_.png",
       "https://inspirationfeed.com/wp-content/uploads/2020/05/Reaction-Meme-1.jpg",
     ],
+    likes: [],
   },
 ];
 

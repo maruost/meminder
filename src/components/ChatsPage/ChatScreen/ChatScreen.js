@@ -7,25 +7,10 @@ import s from "./chatScreen.module.scss";
 import chats from "../../utils/chats";
 import moment, { now } from "moment";
 
-const messagesData = {
-  name: "John Sallivan",
-  _id: "sdfsdfsdfawq",
-  avatar: "https://tsh.io/wp-content/uploads/2019/12/react-meme1_.png",
-  messages: [
-    {
-      message: "hi, how are you",
-      createdAt: "13:23",
-      owner: "sdfsdfsdfawq",
-    },
-    { message: "kek kek ", createdAt: "14:25", owner: "sdfsdfsdfawq" },
-    { message: "hi! fine", createdAt: "15:45", owner: "me" },
-  ],
-};
-
 function ChatScreen({ ...props }) {
   let { id } = useParams();
   const userData = chats.find((chat) => chat._id === id);
-  const initialMessages = userData.messages;
+  const initialMessages = userData ? userData.messages : [];
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [isDisabled, setIsDisabled] = useState(true);
@@ -44,7 +29,11 @@ function ChatScreen({ ...props }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    let now = moment().hours() + ":" + moment().minutes();
+    console.log(typeof moment().hours());
+    let now =
+      String(moment().hours()).padStart(2, "0") +
+      ":" +
+      String(moment().minutes()).padStart(2, "0");
     const messageToSend = {
       creatorId: "ef234padk",
       timestamp: now,

@@ -1,3 +1,5 @@
+$font: "Roboto", Helvetica, Arial, sans-serif;
+
 .main {
   display: flex;
   justify-content: space-between;
@@ -7,10 +9,52 @@
   margin: 20px auto;
 }
 
+.match {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.match-title {
+  font-size: 42px;
+  color: white;
+  font-family: $font;
+  margin: 0 0;
+}
+
+.match-subtitle {
+  opacity: 0.5;
+  margin-bottom: 20px;
+}
+
+.match-avatar {
+  border-radius: 100%;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+.button {
+  color: white !important;
+  font-weight: 400 !important;
+  font-size: 12px !important;
+  opacity: 0.5 !important;
+  margin-right: 10px;
+  transition: opacity 0.15s ease-in-out;
+  &:hover {
+    opacity: 1 !important;
+  }
+}
+
+.outlined {
+  border: 1px solid white !important;
+}
+
 .end {
   position: absolute;
-  top: 320px;
-  right: 380px;
+  top: 40%;
+  right: 43%;
   z-index: -100;
   width: 190px;
   text-align: center;

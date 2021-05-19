@@ -14,6 +14,7 @@ import NotFound from "./components/NotFound/NotFound";
 import Footer from "./components/Footer/Footer";
 import users from "./components/utils/users";
 import ChatsPage from "./components/ChatsPage/ChatsPage";
+import { SnoozeOutlined } from "@material-ui/icons";
 
 const alreadyRemoved = [];
 let peopleState = users;
@@ -25,6 +26,7 @@ function App() {
     !!localStorage.getItem("token") || false
   );
   const [backButton, setBackButton] = useState(null);
+  const [isMatch, setIsMatch] = useState({});
   const history = useHistory();
 
   useEffect(() => {
@@ -74,6 +76,11 @@ function App() {
   const handleBackButton = (path) => {
     setBackButton(path);
   };
+
+  const handleMatch = (person) => {
+    setIsMatch({ ...person });
+  };
+
   return (
     <div className={s.app}>
       <Header backButton={backButton} loggedIn={loggedIn} />
@@ -120,6 +127,8 @@ function App() {
             onSwipe={swipe}
             onOutOfFrame={outOfFrame}
             childRefs={childRefs}
+            onHandleMatch={handleMatch}
+            isMatch={isMatch}
             component={Main}
           />
           <Route path="/welcome-board">
