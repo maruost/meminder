@@ -26,6 +26,9 @@ $font: "Roboto", Helvetica, Arial, sans-serif;
 .match-subtitle {
   opacity: 0.5;
   margin-bottom: 20px;
+  > span {
+    font-style: italic;
+  }
 }
 
 .match-avatar {
@@ -52,21 +55,24 @@ $font: "Roboto", Helvetica, Arial, sans-serif;
 }
 
 .end {
-  position: absolute;
-  top: 40%;
-  right: 43%;
-  z-index: -100;
-  width: 190px;
+  position: relative;
   text-align: center;
   font-weight: 500;
-  animation: spin 5s linear 0s infinite;
+  color: rgb(113, 113, 113);
+  margin-bottom: 10px;
 }
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.end-title {
+  margin: 0 0;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.refresh-button {
+  width: 30px;
+  height: 30px;
+}
+
+.end-subtitle {
+  margin: 5px 0;
 }

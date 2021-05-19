@@ -1,26 +1,20 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import Dropzone from "react-dropzone";
-import { Add, Delete } from "@material-ui/icons";
+import { Add } from "@material-ui/icons";
 import { useFormik } from "formik";
-import "./profileMemeItem.css";
+import s from "./profileMemeItem.module.scss";
 import { DeleteOutline } from "@material-ui/icons";
 
-function ProfileMemeItem({ onHandleFiles }) {
-  const formik = useFormik({
-    initialValues: {
-      files: [],
-    },
-    onSubmit: (data) => {
-      // setValues(data);
-    },
-  });
+function ProfileMemeItem({ onHandleFiles, onHandleDeleteFiles, ...props }) {
+  const [files, setFiles] = useState([]);
 
   const handleDeleteMeme = () => {
-    formik.setFieldValue("files", []);
+    onHandleDeleteFiles(files[0]);
+    setFiles([]);
   };
 
   return (
-    <div className="profileMemeItem__field">
+    <div className={s.field}>
       <Dropzone
         multiple={false}
         accept="image/jpeg, image/png"
@@ -29,35 +23,26 @@ function ProfileMemeItem({ onHandleFiles }) {
           const filesWithURL = acceptedFiles.map((file) => {
             return Object.assign(file, {
               preview: URL.createObjectURL(file),
+              id: Date.now(),
             });
           });
-          formik.setFieldValue("files", [
-            ...formik.values.files,
-            ...filesWithURL,
-          ]);
+          setFiles([...files, ...filesWithURL]);
           onHandleFiles(filesWithURL);
         }}
       >
         {({ getRootProps, getInputProps }) => {
-          if (formik.values.files[0]) {
+          if (files[0]) {
             return (
-              <div className="profileMemeItem__image-wrapper">
-                <img
-                  src={formik.values.files[0].preview}
-                  className="profileMemeItem__image"
-                  alt="мем"
-                />
-                <button
-                  className="profileMemeItem__delete"
-                  onClick={handleDeleteMeme}
-                >
+              <div className={s["image-wrapper"]}>
+                <img src={files[0].preview} className={s.image} alt="мем" />
+                <button className={s.delete} onClick={handleDeleteMeme}>
                   <DeleteOutline />
                 </button>
               </div>
             );
           } else {
             return (
-              <div className="profileMemeItem__wrapper" {...getRootProps()}>
+              <div className={s.wrapper} {...getRootProps()}>
                 <Add style={{ color: "grey" }} />
                 <input {...getInputProps()} name="files" />
               </div>

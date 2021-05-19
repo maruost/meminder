@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import TinderCards from "../TinderCards/TinderCards";
 import s from "./main.module.scss";
 import BottomButtons from "../BottomButtons/BottomButtons";
-import { Backdrop, Button } from "@material-ui/core/";
+import { Backdrop, Button, IconButton } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
+import { Refresh } from "@material-ui/icons/";
+import authData from "../utils/authData";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,7 +26,8 @@ function Main({
   childRefs,
   lastDirection,
   onHandleMatch,
-  isMatch,
+  matchedPerson,
+  peopleState,
   ...props
 }) {
   const classes = useStyles();
@@ -37,6 +40,11 @@ function Main({
     setOpen(true);
   };
 
+  const handleRefresh = () => {
+    console.log("refresh");
+    window.location.reload(false); // this code should be replaced by GET request to API to get new users data
+  };
+
   return (
     <div className={s.main}>
       <Backdrop className={`${classes.root} ${classes.backdrop}`} open={open}>
@@ -44,20 +52,22 @@ function Main({
           <div className={s.match}>
             <p className={s["match-title"]}>О! Повезло, повезло! </p>
             <p className={s["match-subtitle"]}>
-              Это MATCH! Ты и {isMatch.name} лайкнули друг друга
+              Это <span>MATCH!</span> Ты и {matchedPerson.name} лайкнули друг
+              друга
             </p>
             <img
               className={s["match-avatar"]}
-              src={isMatch.files[0]}
+              src={matchedPerson.files[0]}
               width="200px"
               height="200px"
+              alt="аватар"
             />
             <div className={s.buttons}>
               <Button
                 className={`${s.button} ${s.outlined}`}
                 variant="outlined"
                 component={Link}
-                to={`/chats/${isMatch._id}`}
+                to={`/chats/${matchedPerson._id}`}
               >
                 Написать сообщение
               </Button>
@@ -68,16 +78,33 @@ function Main({
           </div>
         ) : null}
       </Backdrop>
-      <TinderCards
-        people={people}
-        onSwiped={onSwiped}
-        onOutOfFrame={onOutOfFrame}
-        childRefs={childRefs}
-        onHandleMatch={onHandleMatch}
-        onHandleOpen={handleOpen}
-      />
-      <BottomButtons people={people} onSwipe={onSwipe} />
-      <p className={s.end}>Оп, оп! Живём, живём!</p>
+      {peopleState.length !== 0 ? (
+        <>
+          <TinderCards
+            people={people}
+            onSwiped={onSwiped}
+            onOutOfFrame={onOutOfFrame}
+            childRefs={childRefs}
+            onHandleMatch={onHandleMatch}
+            onHandleOpen={handleOpen}
+          />
+          <BottomButtons people={people} onSwipe={onSwipe} />
+        </>
+      ) : (
+        <>
+          <div className={s["end"]}>
+            <p className={s["end-title"]}>Оп, оп! Живём, живём!</p>
+            <p className={s["end-subtitle"]}>
+              {authData.gender === "female"
+                ? "(ты долисталa до конца)"
+                : "(ты долистал до конца)"}
+            </p>
+          </div>
+          <IconButton>
+            <Refresh className={s["refresh-button"]} onClick={handleRefresh} />
+          </IconButton>
+        </>
+      )}
     </div>
   );
 }

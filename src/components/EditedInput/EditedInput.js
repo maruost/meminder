@@ -1,22 +1,22 @@
 import React, { useState, useRef } from "react";
 import { Edit } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
-import "./editedInput.css";
+import s from "./editedInput.module.scss";
 
-function EditedInput({ ...props }) {
+function EditedInput({ showIcon, helperText, ...props }) {
   const ref = useRef();
   const handleClick = () => {
     ref.current.focus();
   };
   return (
-    <div className="editedInput">
-      <label for={`${props.name}`} className="editedInput__label">
+    <div className={s.editedInput}>
+      <label htmlFor={`${props.name}`} className={s.label}>
         {props.label}:{" "}
       </label>
       <input {...props} ref={ref} />
-      {props.showIcon ? (
-        <IconButton>
-          <Edit onClick={handleClick} />
+      {showIcon ? (
+        <IconButton onClick={handleClick} className={s.button}>
+          <Edit className={s.icon} />
         </IconButton>
       ) : null}
     </div>

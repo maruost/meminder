@@ -26,8 +26,7 @@ function App() {
     !!localStorage.getItem("token") || false
   );
   const [backButton, setBackButton] = useState(null);
-  const [isMatch, setIsMatch] = useState({});
-  const history = useHistory();
+  const [matchedPerson, setMatchedPerson] = useState({});
 
   useEffect(() => {
     localStorage.getItem("token") ? setLoggedIn(true) : setLoggedIn(false);
@@ -78,7 +77,7 @@ function App() {
   };
 
   const handleMatch = (person) => {
-    setIsMatch({ ...person });
+    setMatchedPerson({ ...person });
   };
 
   return (
@@ -128,7 +127,8 @@ function App() {
             onOutOfFrame={outOfFrame}
             childRefs={childRefs}
             onHandleMatch={handleMatch}
-            isMatch={isMatch}
+            peopleState={peopleState}
+            matchedPerson={matchedPerson}
             component={Main}
           />
           <Route path="/welcome-board">

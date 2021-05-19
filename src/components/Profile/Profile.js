@@ -40,17 +40,19 @@ function Profile({ ...props }) {
       <div className={s.panel}>
         <ProfileTabs />
       </div>
-      <Switch>
-        <Route path={`${path}/memes`}>
-          <ProfileMemes />
-        </Route>
-        <Route exact path={`${path}`}>
-          <ProfileInfo />
-        </Route>
-        <Route path={`${path}/settings`}>
-          <ProfileSettings onHandleLoginFalse={props.onHandleLoginFalse} />
-        </Route>
-      </Switch>
+      <div className={s.page}>
+        <Switch>
+          <Route path={`${path}/memes`}>
+            <ProfileMemes />
+          </Route>
+          <Route exact path={`${path}`}>
+            <ProfileInfo />
+          </Route>
+          <Route path={`${path}/settings`}>
+            <ProfileSettings onHandleLoginFalse={props.onHandleLoginFalse} />
+          </Route>
+        </Switch>
+      </div>
     </section>
   );
 }

@@ -1,7 +1,8 @@
 .title {
   text-align: start;
-  font-weight: 500;
+  font-weight: 700;
   margin: 0 0;
+  font-size: 16px;
   margin-bottom: 15px;
 }
 
@@ -11,6 +12,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  // transition: transform 0.2s ease;
+  // &:hover {
+  //   transform: scale(1.05);
+  // }
 }
 
 .name {
@@ -29,15 +34,19 @@
 .chats__match-nav {
   position: absolute;
   top: -10px;
+  &:focus,
+  :active {
+    outline: none;
+  }
 }
 
-.chats__match-nav.chats__match-nav_left {
+.left {
   position: absolute;
   top: -10px;
   left: -30px;
 }
 
-.chats__match-nav.chats__match-nav_right {
+.right {
   position: absolute;
   top: -10px;
   right: -30px;

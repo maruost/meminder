@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ChatMessage from "../ChatMessage/ChatMessage";
-import { Send } from "@material-ui/icons/";
 import { Button } from "@material-ui/core";
 import s from "./chatScreen.module.scss";
 import chats from "../../utils/chats";
-import moment, { now } from "moment";
+import moment from "moment";
 
 function ChatScreen({ ...props }) {
   let { id } = useParams();
@@ -29,7 +28,6 @@ function ChatScreen({ ...props }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(typeof moment().hours());
     let now =
       String(moment().hours()).padStart(2, "0") +
       ":" +
@@ -61,8 +59,8 @@ function ChatScreen({ ...props }) {
             className={id === msg.creatorId ? "chatMessage" : "chatUserMessage"}
             message={msg.message}
             timestamp={msg.timestamp}
-            firstName={userData.firstName}
-            lastName={userData.lastName}
+            firstName={userData?.firstName ?? ""}
+            lastName={userData?.lastName ?? ""}
             avatar={id === msg.creatorId ? userData.avatar : null}
             index={index}
           />

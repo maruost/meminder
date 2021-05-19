@@ -1,7 +1,34 @@
 .profile {
   width: 100%;
   margin: 0 auto;
+  display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  flex: 1
+  justify-content: flex-start;
+  height: 80vh;
+
+  // flex: 1
+}
+
+.panel {
+  width: 100%;
+}
+
+.page {
+  height: 75vh;
+  overflow-y: auto;
+  height: 75vh;
+  padding-right: 10px;
+  &::-webkit-scrollbar-track {
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: #f0f2f5;
+  }
+  &:hover::-webkit-scrollbar-thumb {
+    background: #b5b6b8;
+  }
 }

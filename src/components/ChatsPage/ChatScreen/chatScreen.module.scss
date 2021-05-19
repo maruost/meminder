@@ -40,16 +40,17 @@
 }
 
 .send-field {
-  width: 79%;
+  width: 85%;
   padding: 10px;
   outline: none;
   border: 1px solid lightgray;
   border-radius: 5px;
+  margin-right: 5px;
 }
 
 .default-message {
   display: inline-block;
   width: 100%;
   text-align: center;
-  color: rgb(148, 148, 148)
+  color: rgb(148, 148, 148);
 }

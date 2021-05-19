@@ -45,11 +45,17 @@ function Matches({ ...props }) {
               onClick={previousSlide}
               className={
                 currentSlide !== 0
-                  ? "carousel__button chats__match-nav chats__match-nav_left"
-                  : "carousel__button chats__match-nav chats__match-nav_left"
+                  ? `carousel__button ${s["chats__match-nav"]} ${s.left}`
+                  : `carousel__button ${s["chats__match-nav"]} ${s.left}`
               }
             >
-              {<img className="carousel__button-icon" src={leftArrowIcon} />}
+              {
+                <img
+                  className="carousel__button-icon"
+                  src={leftArrowIcon}
+                  alt="arrow"
+                />
+              }
             </button>
           )}
           renderCenterRightControls={({
@@ -61,11 +67,17 @@ function Matches({ ...props }) {
               onClick={nextSlide}
               className={
                 currentSlide !== slideCount - 1
-                  ? "carousel__button chats__match-nav chats__match-nav_right"
-                  : "carousel__button chats__match-nav chats__match-nav_right"
+                  ? `carousel__button ${s["chats__match-nav"]} ${s.right}`
+                  : `carousel__button ${s["chats__match-nav"]} ${s.right}`
               }
             >
-              {<img className="carousel__button-icon" src={rightArrowIcon} />}
+              {
+                <img
+                  className="carousel__button-icon"
+                  src={rightArrowIcon}
+                  alt="arrow"
+                />
+              }
             </button>
           )}
         >

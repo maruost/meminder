@@ -37,6 +37,33 @@ const matches = [
       "https://inspirationfeed.com/wp-content/uploads/2020/05/Reaction-Meme-1.jpg",
     ],
   },
+  {
+    _id: "sdsdcsddf78",
+    firstName: "Арина",
+    lastName: "Кузнецова",
+    files: [mem5, mem6],
+  },
+  {
+    _id: "asfdtgergerg9",
+    firstName: "Кристина",
+    lastName: "Петрова",
+    files: [mem7, mem8],
+  },
+  {
+    _id: "sgthryjty0",
+    firstName: "Михаил",
+    lastName: "Иванов",
+    files: [mem8, mem4],
+  },
+  {
+    _id: "afetrtbrrt8",
+    firstName: "Евгений",
+    lastName: "Михайлов",
+    files: [
+      "https://tsh.io/wp-content/uploads/2019/12/react-meme1_.png",
+      "https://inspirationfeed.com/wp-content/uploads/2020/05/Reaction-Meme-1.jpg",
+    ],
+  },
 ];
 
 export default matches;

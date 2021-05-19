@@ -1,5 +1,6 @@
 {
   "name": "meminder",
+  "author": "Maria Ostapenko",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

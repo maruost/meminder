@@ -100,6 +100,7 @@ function ProfileInfo() {
           value={formik.values.date}
           onChange={formik.handleChange}
           required
+          size="small"
           error={formik.touched.date && Boolean(formik.errors.date)}
           helperText={formik.touched.date && formik.errors.date}
         />
@@ -176,6 +177,7 @@ function ProfileInfo() {
           type="text"
           label="Город"
           name="location"
+          size="small"
           value={formik.values.location}
           onChange={formik.handleChange}
           error={formik.touched.location && Boolean(formik.errors.location)}

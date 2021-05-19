@@ -88,6 +88,79 @@ const chats = [
       },
     ],
   },
+  {
+    _id: "afetrtbrrt8",
+    firstName: "Евгений",
+    lastName: "Михайлов",
+    avatar: "https://tsh.io/wp-content/uploads/2019/12/react-meme1_.png",
+    messages: [],
+  },
+  {
+    _id: "asfdtgergerg9",
+    firstName: "Кристина",
+    lastName: "Петрова",
+    avatar: mem7,
+    messages: [
+      {
+        creatorId: "ef234padk",
+        timestamp: "11:21",
+        message: "Привет",
+      },
+    ],
+  },
+  {
+    _id: "afetrtbrrt8",
+    firstName: "Евгений",
+    lastName: "Михайлов",
+    avatar: "https://tsh.io/wp-content/uploads/2019/12/react-meme1_.png",
+    messages: [],
+  },
+  {
+    _id: "asfdtgergerg9",
+    firstName: "Кристина",
+    lastName: "Петрова",
+    avatar: mem7,
+    messages: [
+      {
+        creatorId: "ef234padk",
+        timestamp: "11:21",
+        message: "Привет",
+      },
+    ],
+  },
+  {
+    _id: "afetrtbrrt8",
+    firstName: "Евгений",
+    lastName: "Михайлов",
+    avatar: "https://tsh.io/wp-content/uploads/2019/12/react-meme1_.png",
+    messages: [],
+  },
+  {
+    _id: "asfdtgergerg9",
+    firstName: "Кристина",
+    lastName: "Петрова",
+    avatar: mem7,
+    messages: [
+      {
+        creatorId: "ef234padk",
+        timestamp: "11:21",
+        message: "Привет",
+      },
+    ],
+  },
+  {
+    _id: "asfdtgergerg9",
+    firstName: "Кристина",
+    lastName: "Петрова",
+    avatar: mem7,
+    messages: [
+      {
+        creatorId: "ef234padk",
+        timestamp: "11:21",
+        message: "Привет",
+      },
+    ],
+  },
 ];
 
 export default chats;
