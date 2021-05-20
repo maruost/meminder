@@ -1,10 +1,10 @@
 import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import React from "react";
-import { Form } from "../Form";
-import { Input } from "../Input";
-import { MainContainer } from "../MainContainer";
-import { PrimaryButton } from "../PrimaryButton";
+import { Form } from "../Form/Form";
+import { Input } from "../Input/Input";
+import { MainContainer } from "../MainContainer/MainContainer";
+import { PrimaryButton } from "../PrimaryButton/PrimaryButton";
 import { useHistory } from "react-router-dom";
 import { useData } from "../DataContext/DataContext";
 import { useFormik } from "formik";
@@ -16,7 +16,7 @@ export const Step1 = ({ ...props }) => {
   const { data, setValues } = useData();
   const formik = useFormik({
     initialValues: {
-      email: "",
+      email: data.email ?? "",
       password: "",
     },
     validationSchema: EntryDataSchema,

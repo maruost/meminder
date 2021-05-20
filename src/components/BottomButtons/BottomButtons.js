@@ -1,7 +1,7 @@
 import React from "react";
 import { IconButton } from "@material-ui/core";
 import { FavoriteBorder, Clear } from "@material-ui/icons";
-import "./bottomButtons.css";
+import s from "./bottomButtons.module.scss";
 
 function BottomButtons({ onSwipe }) {
   const swipeRightHandler = () => {
@@ -12,12 +12,12 @@ function BottomButtons({ onSwipe }) {
     onSwipe("left");
   };
   return (
-    <div className="bottomButtons">
-      <IconButton className="bottomButtons__button" onClick={swipeLeftHandler}>
-        <Clear className="bottomButtons__icon bottomButtons__icon_red " />
+    <div className={s["bottom-buttons"]}>
+      <IconButton className={s.button} onClick={swipeLeftHandler}>
+        <Clear className={s.red} />
       </IconButton>
-      <IconButton className="bottomButtons__button" onClick={swipeRightHandler}>
-        <FavoriteBorder className="bottomButtons__icon bottomButtons__icon_green" />
+      <IconButton className={s.button} onClick={swipeRightHandler}>
+        <FavoriteBorder className={s.green} />
       </IconButton>
     </div>
   );

@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import Chat from "../Chat/Chat";
 import s from "./chats.module.scss";
 import chats from "../../utils/chats";
+import uniqid from "uniqid";
 
 function Chats({ ...props }) {
   const handleBackButton = (path) => {
@@ -36,6 +38,7 @@ function Chats({ ...props }) {
                   avatar={chat.avatar}
                   message={msg}
                   timestamp={timestamp}
+                  key={uniqid()}
                 />
               );
             }

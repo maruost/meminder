@@ -2,7 +2,7 @@ import s from "./app.module.scss";
 import m from "./main.module.scss";
 import "./static/fonts/fonts.css";
 import { React, useState, useMemo, createRef, useEffect } from "react";
-import { Switch, Route, useHistory, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import WelcomeBoard from "./components/WelcomeBoard/WelcomeBoard";
@@ -14,7 +14,6 @@ import NotFound from "./components/NotFound/NotFound";
 import Footer from "./components/Footer/Footer";
 import users from "./components/utils/users";
 import ChatsPage from "./components/ChatsPage/ChatsPage";
-import { SnoozeOutlined } from "@material-ui/icons";
 
 const alreadyRemoved = [];
 let peopleState = users;
@@ -49,13 +48,13 @@ function App() {
   );
 
   const swiped = (direction, nameToDelete) => {
-    console.log("removing: " + nameToDelete);
+    // console.log("removing: " + nameToDelete);
     setLastDirection(direction);
     alreadyRemoved.push(nameToDelete);
   };
 
   const outOfFrame = (name) => {
-    console.log(name + " left the screen!");
+    // console.log(name + " left the screen!");
     peopleState = peopleState.filter((character) => character.name !== name);
     setPeople(peopleState);
   };

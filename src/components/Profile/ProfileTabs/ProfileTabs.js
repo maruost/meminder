@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ProfileTabs({ children }) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const { url, path } = useRouteMatch();
+  const { url } = useRouteMatch();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

@@ -1,5 +1,5 @@
 import React from "react";
-import { useRouteMatch, Route, Switch, Link } from "react-router-dom";
+import { useRouteMatch, Route, Switch } from "react-router-dom";
 import Chats from "./Chats/Chats";
 import ChatScreen from "./ChatScreen/ChatScreen";
 import Matches from "./Matches/Matches";

@@ -1,7 +1,8 @@
 import React from "react";
 import Carousel from "nuka-carousel";
 import Card from "../Card/Card";
-import "./cardsCarousel.css";
+import s from "./cardsCarousel.module.scss";
+import uniqid from "uniqid";
 import leftArrowIcon from "../../static/images/left-arrow.svg";
 import rightArrowIcon from "../../static/images/right-arrow.svg";
 
@@ -13,7 +14,7 @@ const styleConfig = {
 
 function CardsCarousel({ person }) {
   return (
-    <div className="carousel">
+    <div className={s.carousel}>
       <Carousel
         dragging={false}
         defaultControlsConfig={styleConfig}
@@ -27,11 +28,17 @@ function CardsCarousel({ person }) {
             onClick={previousSlide}
             className={
               currentSlide !== 0
-                ? "carousel__button carousel__button_active"
-                : "carousel__button carousel__button_inactive"
+                ? `${s.button} ${s.active}`
+                : `${s.button} ${s.inactive}`
             }
           >
-            {<img className="carousel__button-icon" src={leftArrowIcon} />}
+            {
+              <img
+                className={s["button-icon"]}
+                src={leftArrowIcon}
+                alt="icon"
+              />
+            }
           </button>
         )}
         renderCenterRightControls={({
@@ -43,16 +50,22 @@ function CardsCarousel({ person }) {
             onClick={nextSlide}
             className={
               currentSlide !== slideCount - 1
-                ? "carousel__button carousel__button_active"
-                : "carousel__button carousel__button_inactive"
+                ? `${s.button} ${s.active}`
+                : `${s.button} ${s.inactive}`
             }
           >
-            {<img className="carousel__button-icon" src={rightArrowIcon} />}
+            {
+              <img
+                className={s["button-icon"]}
+                src={rightArrowIcon}
+                alt="icon"
+              />
+            }
           </button>
         )}
       >
         {person.files.map((meme) => (
-          <Card name={person.name} meme={meme} />
+          <Card name={person.name} meme={meme} key={uniqid()} />
         ))}
       </Carousel>
     </div>

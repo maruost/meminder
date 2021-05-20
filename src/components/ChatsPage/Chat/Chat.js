@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Avatar } from "@material-ui/core";
 import { Link } from "react-router-dom";
@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
 function Chat({ name, avatar, message, timestamp, id, ...props }) {
   const classes = useStyles();
   const [initials, setInitials] = useState();
-  console.log(props);
 
   useEffect(() => {
     const initials = name

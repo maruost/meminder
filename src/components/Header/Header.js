@@ -1,13 +1,11 @@
 import React from "react";
-import { useHistory, Link, NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { IconButton } from "@material-ui/core";
 import { Person, Forum, ArrowBackIos } from "@material-ui/icons";
 import s from "./header.module.scss";
 import logo from "../../static/images/logo_meminder.png";
 
 function Header({ backButton, loggedIn, ...props }) {
-  const history = useHistory();
-
   const renderStartHeader = () => {
     return (
       <header className={s.header}>

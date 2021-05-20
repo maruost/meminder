@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import s from "./footer.module.scss";
 import { GitHub, Telegram } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";

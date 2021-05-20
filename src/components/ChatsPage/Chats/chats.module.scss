@@ -1,3 +1,9 @@
+$font: "Roboto", Helvetica, Arial, sans-serif;
+
+.chats {
+  font-family: $font;
+}
+
 .items {
   display: flex;
   flex-direction: column;

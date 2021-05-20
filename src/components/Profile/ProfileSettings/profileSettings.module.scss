@@ -1,5 +1,13 @@
+$font: "Roboto", Helvetica, Arial, sans-serif;
+
 .title {
   margin: 0 0;
   margin-bottom: 10px;
   font-size: 18px;
+  font-family: $font;
+}
+
+.esc-button {
+  font-size: 12px !important;
+  color: gray !important;
 }

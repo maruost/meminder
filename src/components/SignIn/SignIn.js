@@ -1,27 +1,16 @@
 import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import React from "react";
-import { Form } from "../Form";
-import { Input } from "../Input";
-import { MainContainer } from "../MainContainer";
-import { PrimaryButton } from "../PrimaryButton";
-import { useHistory } from "react-router-dom";
-import { useData } from "../DataContext/DataContext";
-import * as yup from "yup";
+import { Form } from "../Form/Form";
+import { Input } from "../Input/Input";
+import { MainContainer } from "../MainContainer/MainContainer";
+import { PrimaryButton } from "../PrimaryButton/PrimaryButton";
 import { useFormik } from "formik";
 import FakeApi from "../utils/FakeApi";
 import s from "./signIn.module.scss";
-
-let schema = yup.object().shape({
-  email: yup
-    .string()
-    .email("Пожалуйста, введите действующий e-mail")
-    .required("Поле обязательно должно быть заполнено"),
-  password: yup.string().required("Поле обязательно должно быть заполнено"),
-});
+import schema from "./schema";
 
 const SignIn = ({ onHandleLogin, ...props }) => {
-  const history = useHistory();
   const { signin } = FakeApi();
   const formik = useFormik({
     initialValues: {

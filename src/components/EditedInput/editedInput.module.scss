@@ -1,9 +1,12 @@
+$font: "Roboto", Helvetica, Arial, sans-serif;
+
 .editedInput {
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+  font-family: $font;
   & > input {
     border: none;
     border-radius: 5px;

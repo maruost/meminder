@@ -1,9 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Dropzone from "react-dropzone";
 import { Add } from "@material-ui/icons";
-import { useFormik } from "formik";
 import s from "./profileMemeItem.module.scss";
 import { DeleteOutline } from "@material-ui/icons";
+import uniqid from "uniqid";
 
 function ProfileMemeItem({ onHandleFiles, onHandleDeleteFiles, ...props }) {
   const [files, setFiles] = useState([]);
@@ -23,7 +23,7 @@ function ProfileMemeItem({ onHandleFiles, onHandleDeleteFiles, ...props }) {
           const filesWithURL = acceptedFiles.map((file) => {
             return Object.assign(file, {
               preview: URL.createObjectURL(file),
-              id: Date.now(),
+              id: uniqid(),
             });
           });
           setFiles([...files, ...filesWithURL]);

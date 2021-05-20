@@ -1,15 +1,10 @@
 import React, { useEffect } from "react";
 import Dropzone from "react-dropzone";
-import {
-  Paper,
-  List,
-  ListItem,
-  ListItemText,
-  IconButton,
-} from "@material-ui/core";
+import { List, ListItem, ListItemText, IconButton } from "@material-ui/core";
 import { CloudUpload } from "@material-ui/icons";
 import { DeleteOutline } from "@material-ui/icons";
 import s from "./dropZone.module.scss";
+import uniqid from "uniqid";
 
 function DropZone({
   name,
@@ -54,7 +49,7 @@ function DropZone({
       <div className={s.images}>
         <List>
           {values.map((f, index) => (
-            <ListItem key={f.name}>
+            <ListItem key={uniqid()}>
               <img src={f.preview} alt="файл" className={s.preview} />
               <ListItemText
                 primary={f.name}

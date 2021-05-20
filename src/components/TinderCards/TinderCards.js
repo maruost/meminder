@@ -1,6 +1,6 @@
-import { React, useState } from "react";
+import { React } from "react";
 import TinderCardContainer from "../TinderCardContainer/TinderCardContainer";
-import "./tinderCards.css";
+import s from "./tinderCards.module.scss";
 
 function TinderCards({
   people,
@@ -12,11 +12,11 @@ function TinderCards({
   ...props
 }) {
   return (
-    <div className="cards">
+    <div className={s.cards}>
       {people.map((person, i) => (
         <TinderCardContainer
           person={person}
-          key={person.firstName}
+          key={person._id}
           onSwiped={onSwiped}
           onOutOfFrame={onOutOfFrame}
           childRefs={childRefs}

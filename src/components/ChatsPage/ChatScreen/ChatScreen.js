@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ChatMessage from "../ChatMessage/ChatMessage";
@@ -5,6 +6,7 @@ import { Button } from "@material-ui/core";
 import s from "./chatScreen.module.scss";
 import chats from "../../utils/chats";
 import moment from "moment";
+import uniqid from "uniqid";
 
 function ChatScreen({ ...props }) {
   let { id } = useParams();
@@ -63,6 +65,7 @@ function ChatScreen({ ...props }) {
             lastName={userData?.lastName ?? ""}
             avatar={id === msg.creatorId ? userData.avatar : null}
             index={index}
+            key={uniqid()}
           />
         );
       });

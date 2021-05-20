@@ -1,8 +1,9 @@
 import React from "react";
-import { PrimaryButton } from "../../PrimaryButton";
+import { PrimaryButton } from "../../PrimaryButton/PrimaryButton";
 import ProfileMemeItem from "./ProfileMemeItem/ProfileMemeItem";
 import { useFormik } from "formik";
 import s from "./profileMemes.module.scss";
+import uniqid from "uniqid";
 
 function ProfileMemes() {
   const formik = useFormik({
@@ -30,7 +31,7 @@ function ProfileMemes() {
     const arr = new Array(num).fill(0);
     return arr.map((el, index) => (
       <ProfileMemeItem
-        key={index}
+        key={uniqid()}
         onHandleFiles={handleFiles}
         onHandleDeleteFiles={handleDeleteFiles}
       />

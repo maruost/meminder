@@ -1,9 +1,8 @@
 import React from "react";
 import TinderCard from "react-tinder-card";
-import "./tinderCardContainer.css";
+import s from "./tinderCardContainer.module.scss";
 import CardsCarousel from "../CardsCarousel/CardsCarousel";
 import authData from "../utils/authData";
-import matches from "../utils/matches";
 
 function TinderCardContainer({
   person,
@@ -41,7 +40,7 @@ function TinderCardContainer({
 
   return (
     <TinderCard
-      className="swipe"
+      className={s.swipe}
       preventSwipe={["up", "down"]}
       ref={childRefs[index]}
       onSwipe={handleSwiped}

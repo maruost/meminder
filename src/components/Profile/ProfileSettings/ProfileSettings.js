@@ -1,27 +1,11 @@
-import React, { useRef, useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import React from "react";
+import { useHistory } from "react-router-dom";
 import EditedInput from "../../EditedInput/EditedInput";
 import { useFormik } from "formik";
-import * as yup from "yup";
-import { PrimaryButton } from "../../PrimaryButton";
-import { Domain } from "@material-ui/icons";
+import { PrimaryButton } from "../../PrimaryButton/PrimaryButton";
 import s from "./profileSettings.module.scss";
 import authData from "../../utils/authData";
-
-let schema = yup.object().shape({
-  email: yup
-    .string()
-    .email("Пожалуйста, введите действующий e-mail")
-    .required("Поле обязательно должно быть заполнено"),
-  oldPassword: yup
-    .string()
-    .min(8, "Минимум 8 символов")
-    .required("Поле обязательно должно быть заполнено"),
-  newPassword: yup
-    .string()
-    .min(8, "Минимум 8 символов")
-    .required("Поле обязательно должно быть заполнено"),
-});
+import { settingSchema } from "../schemas";
 
 function ProfileSettings({ ...props }) {
   const history = useHistory();
@@ -31,19 +15,17 @@ function ProfileSettings({ ...props }) {
       oldPassword: "",
       newPassword: "",
     },
-    validationSchema: schema,
+    validationSchema: settingSchema,
     onSubmit: (data) => {
       console.log(data);
-      //   if (data) {
-      //     history.push(`${url}/step2`);
-      // setValues(data);
+      // send request to API to compare entered old password with password in DB and update data if passwords are equal
     },
   });
 
   function handleLogout() {
     localStorage.removeItem("token");
     props.onHandleLoginFalse();
-    history.push("../welcome-board");
+    history.push("/welcome-board");
   }
   return (
     <div className={s.profileSettings}>
@@ -85,7 +67,11 @@ function ProfileSettings({ ...props }) {
         />
         <PrimaryButton size="small">Сохранить изменения</PrimaryButton>
       </form>
-      <PrimaryButton color="default" onClick={handleLogout}>
+      <PrimaryButton
+        color="default"
+        onClick={handleLogout}
+        className={s["esc-button"]}
+      >
         Выйти из аккаунта
       </PrimaryButton>
     </div>

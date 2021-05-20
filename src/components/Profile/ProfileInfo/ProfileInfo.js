@@ -1,12 +1,9 @@
 import React from "react";
 import EditedInput from "../../EditedInput/EditedInput";
 import { useFormik } from "formik";
-import * as yup from "yup";
-import { Input } from "../../Input";
+import { Input } from "../../Input/Input";
 import {
-  Typography,
   FormControlLabel,
-  TextField,
   FormControl,
   FormLabel,
   RadioGroup,
@@ -14,33 +11,10 @@ import {
   Switch,
   TextareaAutosize,
 } from "@material-ui/core";
-import moment from "moment";
-import { PrimaryButton } from "../../PrimaryButton";
+import { PrimaryButton } from "../../PrimaryButton/PrimaryButton";
 import s from "./profileInfo.module.scss";
 import authData from "../../utils/authData";
-
-let schema = yup.object().shape({
-  firstName: yup
-    .string()
-    .min(2, "Минимум 2 символа")
-    .required("Поле обязательно должно быть заполнено"),
-  lastName: yup
-    .string()
-    .min(2, "Минимум 2 символа")
-    .required("Поле обязательно должно быть заполнено"),
-  date: yup
-    .string()
-    .required("Пожалуйста, укажи дату рождения")
-    .test(
-      "DOB",
-      "Чтобы пользоваться приложением тебе должно быть не меньше 18 лет",
-      (value) => {
-        return moment().diff(moment(value), "years") >= 18;
-      }
-    ),
-  gender: yup.string().required(),
-  searchingGender: yup.string().required(),
-});
+import { userSchema } from "../schemas";
 
 function ProfileInfo() {
   const formik = useFormik({
@@ -54,11 +28,10 @@ function ProfileInfo() {
       locationToFind: authData.locationToFind,
       about: authData.about,
     },
-    validationSchema: schema,
+    validationSchema: userSchema,
     onSubmit: (data) => {
       console.log(data);
-      //   history.push("/step3");
-      // setValues(data);
+      //send PUT request to API to update userInfoData
     },
   });
   return (

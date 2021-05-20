@@ -2,9 +2,9 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import DropZone from "../DropZone/DropZone";
 import { useFormik } from "formik";
-import { Form } from "../Form";
-import { PrimaryButton } from "../PrimaryButton";
-import { MainContainer } from "../MainContainer";
+import { Form } from "../Form/Form";
+import { PrimaryButton } from "../PrimaryButton/PrimaryButton";
+import { MainContainer } from "../MainContainer/MainContainer";
 import { Typography } from "@material-ui/core";
 import { useData } from "../DataContext/DataContext";
 import Swal from "sweetalert2";
@@ -19,8 +19,9 @@ function Step3({ onHandleLogin, ...props }) {
       files: [],
     },
     onSubmit: (files) => {
-      console.log(files);
       setValues(files);
+      console.log(data);
+      //send POST request to API with userData and userFiles from dataContext
       Swal.fire({
         title: "Регистрация прошла успешно",
         text: 'Нажмите кнопку "Далее", чтобы начать пользоваться приложением',

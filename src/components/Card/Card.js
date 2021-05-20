@@ -1,10 +1,10 @@
 import React from "react";
-import "./card.css";
+import s from "./card.module.scss";
 
 function Card({ name, meme }) {
   return (
-    <div className="card" style={{ backgroundImage: `url(${meme})` }}>
-      <p className="card__userName">{name}</p>
+    <div className={s.card} style={{ backgroundImage: `url(${meme})` }}>
+      <p className={s["user-name"]}>{name}</p>
     </div>
   );
 }

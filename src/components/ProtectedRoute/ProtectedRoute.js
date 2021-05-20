@@ -4,11 +4,10 @@ const ProtectedRoute = ({ component: Component, ...props }) => {
   return (
     <Route path={props.path}>
       {() => {
-        console.log(props.loggedIn);
         return props.loggedIn ? (
           <Component {...props} />
         ) : (
-          <Redirect to="./welcome-board" />
+          <Redirect to="/welcome-board" />
         );
       }}
     </Route>

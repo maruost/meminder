@@ -100,8 +100,8 @@ function Main({
                 : "(ты долистал до конца)"}
             </p>
           </div>
-          <IconButton>
-            <Refresh className={s["refresh-button"]} onClick={handleRefresh} />
+          <IconButton onClick={handleRefresh}>
+            <Refresh className={s["refresh-button"]} />
           </IconButton>
         </>
       )}

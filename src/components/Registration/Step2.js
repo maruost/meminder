@@ -8,10 +8,10 @@ import {
   Switch,
 } from "@material-ui/core";
 import { React } from "react";
-import { Form } from "../Form";
-import { Input } from "../Input";
-import { MainContainer } from "../MainContainer";
-import { PrimaryButton } from "../PrimaryButton";
+import { Form } from "../Form/Form";
+import { Input } from "../Input/Input";
+import { MainContainer } from "../MainContainer/MainContainer";
+import { PrimaryButton } from "../PrimaryButton/PrimaryButton";
 import { useHistory } from "react-router-dom";
 import { useData } from "../DataContext/DataContext";
 import { useFormik } from "formik";
@@ -24,13 +24,13 @@ export const Step2 = ({ ...props }) => {
 
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
-      date: "",
-      gender: "",
-      searchingGender: "",
-      location: "",
-      locationToFind: false,
+      firstName: data.firstName ?? "",
+      lastName: data.lastName ?? "",
+      date: data.date ?? "",
+      gender: data.gender ?? "",
+      searchingGender: data.searchingGender ?? "",
+      location: data.location ?? "",
+      locationToFind: data.locationToFind ?? false,
     },
     validationSchema: UserInfoSchema,
     onSubmit: (data) => {

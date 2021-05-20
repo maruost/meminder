@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Route, Switch } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Carousel from "nuka-carousel";
 import { Avatar } from "@material-ui/core";
@@ -7,6 +7,7 @@ import matches from "../../utils/matches";
 import leftArrowIcon from "../../../static/images/left-arrow-dark.svg";
 import rightArrowIcon from "../../../static/images/right-arrow-dark.svg";
 import s from "./matches.module.scss";
+import uniqid from "uniqid";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,7 +31,7 @@ const styleConfig = {
 function Matches({ ...props }) {
   const classes = useStyles();
   return (
-    <>
+    <div className={s.main}>
       <h4 className={s.title}>Твои пары</h4>
       <div className={s.matches}>
         <Carousel
@@ -45,13 +46,13 @@ function Matches({ ...props }) {
               onClick={previousSlide}
               className={
                 currentSlide !== 0
-                  ? `carousel__button ${s["chats__match-nav"]} ${s.left}`
-                  : `carousel__button ${s["chats__match-nav"]} ${s.left}`
+                  ? `${s.button} ${s["chats__match-nav"]} ${s.left}`
+                  : `${s.button} ${s["chats__match-nav"]} ${s.left}`
               }
             >
               {
                 <img
-                  className="carousel__button-icon"
+                  className={s["button-icon"]}
                   src={leftArrowIcon}
                   alt="arrow"
                 />
@@ -67,13 +68,13 @@ function Matches({ ...props }) {
               onClick={nextSlide}
               className={
                 currentSlide !== slideCount - 1
-                  ? `carousel__button ${s["chats__match-nav"]} ${s.right}`
-                  : `carousel__button ${s["chats__match-nav"]} ${s.right}`
+                  ? `${s.button} ${s["chats__match-nav"]} ${s.right}`
+                  : `${s.button} ${s["chats__match-nav"]} ${s.right}`
               }
             >
               {
                 <img
-                  className="carousel__button-icon"
+                  className={s["button-icon"]}
                   src={rightArrowIcon}
                   alt="arrow"
                 />
@@ -82,7 +83,7 @@ function Matches({ ...props }) {
           )}
         >
           {matches.map((person) => (
-            <div className={s["match-person"]}>
+            <div className={s["match-person"]} key={uniqid()}>
               <Link to={`/chats/${person._id}`} className={s.link}>
                 <Avatar src={person.files[0]} className={classes.large} />
                 <p className={s.name}>{person.firstName}</p>
@@ -91,7 +92,7 @@ function Matches({ ...props }) {
           ))}
         </Carousel>
       </div>
-    </>
+    </div>
   );
 }
 

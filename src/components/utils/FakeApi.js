@@ -1,8 +1,7 @@
-import React from "react";
 import authData from "./authData";
 
 function FakeApi() {
-   const signin = (data) => {
+  const signin = (data) => {
     const email = data.email;
     const password = data.password;
     console.log(data);

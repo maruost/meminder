@@ -1,16 +1,30 @@
-import mem5 from "../../static/images/mems/mem5.png";
+import mem13 from "../../static/images/mems/mem13.png";
+import mem6 from "../../static/images/mems/mem6.png";
 import mem8 from "../../static/images/mems/mem8.png";
-import mem7 from "../../static/images/mems/mem7.png";
+import mem18 from "../../static/images/mems/mem18.png";
 
 const chats = [
   {
-    _id: "sdsdcsddf78",
-    firstName: "Арина",
-    lastName: "Кузнецова",
-    avatar: mem5,
+    _id: "sgbfmytyjj8",
+    firstName: "Екатерина",
+    lastName: "Колесникова",
+    avatar: mem18,
     messages: [
       {
-        creatorId: "sdsdcsddf78",
+        creatorId: "ef234padk",
+        timestamp: "21:21",
+        message: "привет!!!!",
+      },
+    ],
+  },
+  {
+    _id: "asdwefwgweg5",
+    firstName: "Мария",
+    lastName: "Остапенко",
+    avatar: mem13,
+    messages: [
+      {
+        creatorId: "asdwefwgweg5",
         timestamp: "13:13",
         message: "Привет! Как дела?",
       },
@@ -25,12 +39,12 @@ const chats = [
         message: "Вcё супер. Ты как?",
       },
       {
-        creatorId: "sdsdcsddf78",
+        creatorId: "asdwefwgweg5",
         timestamp: "13:26",
         message: "Отлично",
       },
       {
-        creatorId: "sdsdcsddf78",
+        creatorId: "asdwefwgweg5",
         timestamp: "13:27",
         message: "Хочешь анекдот?",
       },
@@ -40,7 +54,7 @@ const chats = [
         message: "Давай",
       },
       {
-        creatorId: "sdsdcsddf78",
+        creatorId: "asdwefwgweg5",
         timestamp: "13:33",
         message: `Заходит как-то раз 🐌 в бар и подходит к бармену, заказывает стакан воды и уходит. Приходит на следующий день, снова заказывает стакан воды и так ещё несколько дней подряд. 
         В какой-то из дней, бармен спрашивает у улитки: 
@@ -51,13 +65,13 @@ const chats = [
     ],
   },
   {
-    _id: "sgthryjty0",
-    firstName: "Михаил",
-    lastName: "Иванов",
-    avatar: mem8,
+    _id: "saaesgwer90",
+    firstName: "Артём",
+    lastName: "Карпов",
+    avatar: mem6,
     messages: [
       {
-        creatorId: "sgthryjty0",
+        creatorId: "saaesgwer90",
         timestamp: "12:12",
         message: "АХАХАХАХахахахххаа",
       },
@@ -69,97 +83,11 @@ const chats = [
     ],
   },
   {
-    _id: "afetrtbrrt8",
-    firstName: "Евгений",
-    lastName: "Михайлов",
-    avatar: "https://tsh.io/wp-content/uploads/2019/12/react-meme1_.png",
+    _id: "iygjfthdr6",
+    firstName: "Анна",
+    lastName: "Тарасова",
+    avatar: mem8,
     messages: [],
-  },
-  {
-    _id: "asfdtgergerg9",
-    firstName: "Кристина",
-    lastName: "Петрова",
-    avatar: mem7,
-    messages: [
-      {
-        creatorId: "ef234padk",
-        timestamp: "11:21",
-        message: "Привет",
-      },
-    ],
-  },
-  {
-    _id: "afetrtbrrt8",
-    firstName: "Евгений",
-    lastName: "Михайлов",
-    avatar: "https://tsh.io/wp-content/uploads/2019/12/react-meme1_.png",
-    messages: [],
-  },
-  {
-    _id: "asfdtgergerg9",
-    firstName: "Кристина",
-    lastName: "Петрова",
-    avatar: mem7,
-    messages: [
-      {
-        creatorId: "ef234padk",
-        timestamp: "11:21",
-        message: "Привет",
-      },
-    ],
-  },
-  {
-    _id: "afetrtbrrt8",
-    firstName: "Евгений",
-    lastName: "Михайлов",
-    avatar: "https://tsh.io/wp-content/uploads/2019/12/react-meme1_.png",
-    messages: [],
-  },
-  {
-    _id: "asfdtgergerg9",
-    firstName: "Кристина",
-    lastName: "Петрова",
-    avatar: mem7,
-    messages: [
-      {
-        creatorId: "ef234padk",
-        timestamp: "11:21",
-        message: "Привет",
-      },
-    ],
-  },
-  {
-    _id: "afetrtbrrt8",
-    firstName: "Евгений",
-    lastName: "Михайлов",
-    avatar: "https://tsh.io/wp-content/uploads/2019/12/react-meme1_.png",
-    messages: [],
-  },
-  {
-    _id: "asfdtgergerg9",
-    firstName: "Кристина",
-    lastName: "Петрова",
-    avatar: mem7,
-    messages: [
-      {
-        creatorId: "ef234padk",
-        timestamp: "11:21",
-        message: "Привет",
-      },
-    ],
-  },
-  {
-    _id: "asfdtgergerg9",
-    firstName: "Кристина",
-    lastName: "Петрова",
-    avatar: mem7,
-    messages: [
-      {
-        creatorId: "ef234padk",
-        timestamp: "11:21",
-        message: "Привет",
-      },
-    ],
   },
 ];
 
