@@ -3,7 +3,6 @@ import { PrimaryButton } from "../../PrimaryButton/PrimaryButton";
 import ProfileMemeItem from "./ProfileMemeItem/ProfileMemeItem";
 import { useFormik } from "formik";
 import s from "./profileMemes.module.scss";
-import uniqid from "uniqid";
 
 function ProfileMemes() {
   const formik = useFormik({
