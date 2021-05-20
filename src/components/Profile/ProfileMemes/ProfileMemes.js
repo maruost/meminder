@@ -31,7 +31,7 @@ function ProfileMemes() {
     const arr = new Array(num).fill(0);
     return arr.map((el, index) => (
       <ProfileMemeItem
-        key={uniqid()}
+        key={index}
         onHandleFiles={handleFiles}
         onHandleDeleteFiles={handleDeleteFiles}
       />
