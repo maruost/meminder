@@ -29,14 +29,8 @@ let settingSchema = yup.object().shape({
     .string()
     .email("Пожалуйста, введите действующий e-mail")
     .required("Поле обязательно должно быть заполнено"),
-  oldPassword: yup
-    .string()
-    .min(8, "Минимум 8 символов")
-    .required("Поле обязательно должно быть заполнено"),
-  newPassword: yup
-    .string()
-    .min(8, "Минимум 8 символов")
-    .required("Поле обязательно должно быть заполнено"),
+  oldPassword: yup.string().min(8, "Минимум 8 символов"),
+  newPassword: yup.string().min(8, "Минимум 8 символов"),
 });
 
 export { userSchema, settingSchema };

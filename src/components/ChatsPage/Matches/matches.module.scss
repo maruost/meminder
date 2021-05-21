@@ -2,6 +2,7 @@ $font: "Roboto", Helvetica, Arial, sans-serif;
 
 .main {
   font-family: $font;
+  width: 100%;
 }
 .title {
   text-align: start;
@@ -18,15 +19,12 @@ $font: "Roboto", Helvetica, Arial, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  // transition: transform 0.2s ease;
-  // &:hover {
-  //   transform: scale(1.05);
-  // }
 }
 
 .button {
   background-color: transparent !important;
   border: none;
+  padding: 0 0;
   &:active,
   :focus {
     outline: none;
@@ -40,7 +38,7 @@ $font: "Roboto", Helvetica, Arial, sans-serif;
 }
 
 .matches {
-  width: 93%;
+  width: 92%;
   position: relative;
   margin: 0 auto;
   margin-bottom: 15px;
@@ -61,13 +59,13 @@ $font: "Roboto", Helvetica, Arial, sans-serif;
 .left {
   position: absolute;
   top: -10px;
-  left: -30px;
+  left: -20px;
 }
 
 .right {
   position: absolute;
   top: -10px;
-  right: -30px;
+  right: -20px;
 }
 
 .button-icon {

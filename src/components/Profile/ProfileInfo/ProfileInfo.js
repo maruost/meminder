@@ -8,13 +8,14 @@ import {
   FormLabel,
   RadioGroup,
   Radio,
-  Switch,
   TextareaAutosize,
 } from "@material-ui/core";
 import { PrimaryButton } from "../../PrimaryButton/PrimaryButton";
+import { DefaultButton } from "../../DefaultButton/DefaultButton";
 import s from "./profileInfo.module.scss";
 import authData from "../../utils/authData";
 import { userSchema } from "../schemas";
+import { Switcher } from "../../Switcher/Switcher";
 
 function ProfileInfo() {
   const formik = useFormik({
@@ -159,7 +160,7 @@ function ProfileInfo() {
         <div className={s.slider}>
           <FormControlLabel
             control={
-              <Switch
+              <Switcher
                 checked={
                   formik.values.location ? formik.values.locationToFind : null
                 }
@@ -169,9 +170,6 @@ function ProfileInfo() {
                 error={
                   formik.touched.locationToFind &&
                   Boolean(formik.errors.locationToFind)
-                }
-                helperText={
-                  formik.touched.locationToFind && formik.errors.locationToFind
                 }
                 disabled={formik.values.location ? false : true}
                 color="primary"
@@ -189,7 +187,11 @@ function ProfileInfo() {
           onChange={formik.handleChange}
           className={s["text-area"]}
         />
-        <PrimaryButton>Сохранить изменения</PrimaryButton>
+        {formik.isValid ? (
+          <PrimaryButton>Сохранить изменения</PrimaryButton>
+        ) : (
+          <DefaultButton>Сохранить изменения</DefaultButton>
+        )}
       </form>
     </div>
   );

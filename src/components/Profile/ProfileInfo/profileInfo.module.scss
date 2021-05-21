@@ -23,6 +23,16 @@ $font: "Roboto", Helvetica, Arial, sans-serif;
   border: 1px solid lightgray;
   border-radius: 4px;
   overflow-y: auto;
+  padding: 5px;
+  font-family: $font;
+  &:hover {
+    border: 1px solid #607d8b;
+  }
+  &:focus,
+  &:active {
+    outline: none !important;
+    border: 2px solid #607d8b;
+  }
 }
 
 .form {

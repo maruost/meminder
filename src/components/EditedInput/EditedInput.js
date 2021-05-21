@@ -10,16 +10,19 @@ function EditedInput({ showIcon, helperText, error, ...props }) {
   };
   return (
     <div className={s.editedInput}>
-      <label htmlFor={`${props.name}`} className={s.label}>
-        {props.label}:{" "}
-      </label>
-      <input {...props} ref={ref} />
-      <p>{helperText}</p>
-      {showIcon ? (
-        <IconButton onClick={handleClick} className={s.button}>
-          <Edit className={s.icon} />
-        </IconButton>
-      ) : null}
+      <div className={s.box}>
+        <label htmlFor={`${props.name}`} className={s.label}>
+          {props.label}:{" "}
+        </label>
+        <input {...props} ref={ref} />
+
+        {showIcon ? (
+          <IconButton onClick={handleClick} className={s.button}>
+            <Edit className={s.icon} />
+          </IconButton>
+        ) : null}
+      </div>
+      <p className={s.error}>{helperText}</p>
     </div>
   );
 }

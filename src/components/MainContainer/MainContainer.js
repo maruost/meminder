@@ -4,13 +4,16 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(0),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
   },
   paper: {
-    padding: theme.spacing(4),
+    paddingRight: theme.spacing(4),
+    paddingLeft: theme.spacing(4),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
   },
 }));
 
@@ -18,12 +21,7 @@ export const MainContainer = ({ children, ...props }) => {
   const styles = useStyles();
 
   return (
-    <Container
-      component="main"
-      maxWidth="s"
-      className={styles.root}
-      {...props}
-    >
+    <Container component="div" maxWidth="s" className={styles.root} {...props}>
       <Paper className={styles.paper}>{children}</Paper>
     </Container>
   );

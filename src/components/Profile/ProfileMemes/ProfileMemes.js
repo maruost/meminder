@@ -40,7 +40,7 @@ function ProfileMemes() {
   return (
     <div className={s.profileMemes}>
       <h2 className={s.title}>Мои мемы</h2>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit} className={s.form}>
         <div className={s.container}>{renderFieldsByNum(9)}</div>
         <PrimaryButton>Сохранить</PrimaryButton>
       </form>

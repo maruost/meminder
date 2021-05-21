@@ -1,6 +1,6 @@
 $font: "Roboto", Helvetica, Arial, sans-serif;
 
-.editedInput {
+.box {
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -18,9 +18,12 @@ $font: "Roboto", Helvetica, Arial, sans-serif;
     border: 1px solid lightgray;
     flex: 1;
   }
+  & > input:hover {
+    border: 1px solid #607d8b;
+  }
   & > input:focus {
     outline: none;
-    border: 1px solid lightgray;
+    border: 2px solid #607d8b;
   }
 }
 
@@ -33,4 +36,10 @@ $font: "Roboto", Helvetica, Arial, sans-serif;
 .icon {
   width: 20px;
   height: 20px;
+}
+
+.error {
+  display: block;
+  font-size: 12px;
+  color: red;
 }

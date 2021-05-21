@@ -4,6 +4,7 @@ import DropZone from "../DropZone/DropZone";
 import { useFormik } from "formik";
 import { Form } from "../Form/Form";
 import { PrimaryButton } from "../PrimaryButton/PrimaryButton";
+import { DefaultButton } from "../DefaultButton/DefaultButton";
 import { MainContainer } from "../MainContainer/MainContainer";
 import { Typography } from "@material-ui/core";
 import { useData } from "../DataContext/DataContext";
@@ -27,6 +28,8 @@ function Step3({ onHandleLogin, ...props }) {
         text: 'Нажмите кнопку "Далее", чтобы начать пользоваться приложением',
         icon: "success",
         confirmButtonText: "Далее",
+        confirmButtonColor: "#00897b",
+        iconColor: "#80cbc4",
       }).then(() => {
         history.push("../signin");
       });
@@ -52,10 +55,12 @@ function Step3({ onHandleLogin, ...props }) {
             values={formik.values.files}
             onHandleDeleteMeme={handleDeleteMeme}
           />
-          <PrimaryButton color={!formik.isValid ? "default" : "primary"}>
-            Готово!
-          </PrimaryButton>
-          <PrimaryButton
+          {formik.isValid ? (
+            <PrimaryButton>Готово!</PrimaryButton>
+          ) : (
+            <DefaultButton>Готово!</DefaultButton>
+          )}
+          <DefaultButton
             color="default"
             type="button"
             onClick={() => {
@@ -63,7 +68,7 @@ function Step3({ onHandleLogin, ...props }) {
             }}
           >
             Назад
-          </PrimaryButton>
+          </DefaultButton>
         </Form>
       </MainContainer>
     </div>

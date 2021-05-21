@@ -2,10 +2,25 @@ $font: "Roboto", Helvetica, Arial, sans-serif;
 
 .registration {
   width: 100%;
-  margin: 40px auto;
+  height: 100%;
+  margin: 0 auto;
   text-align: center;
   display: flex;
   flex-direction: column;
   font-family: $font;
   flex: 1;
+  overflow-y: auto;
+  &::-webkit-scrollbar-track {
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: #f0f2f5;
+  }
+  &:hover::-webkit-scrollbar-thumb {
+    background: #b5b6b8;
+  }
 }

@@ -16,6 +16,7 @@ $font: "Roboto", Helvetica, Arial, sans-serif;
 
 .step {
   width: 100%;
+  margin: 40px auto;
 }
 
 .text-box {
@@ -28,6 +29,6 @@ $font: "Roboto", Helvetica, Arial, sans-serif;
   color: rgb(159, 159, 165);
   transition: color 0.2s ease-in-out;
   &:hover {
-    color: rgb(39, 39, 126);
+    color: #546e7a;
   }
 }

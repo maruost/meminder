@@ -5,6 +5,7 @@ import { Form } from "../Form/Form";
 import { Input } from "../Input/Input";
 import { MainContainer } from "../MainContainer/MainContainer";
 import { PrimaryButton } from "../PrimaryButton/PrimaryButton";
+import { DefaultButton } from "../DefaultButton/DefaultButton";
 import { useHistory } from "react-router-dom";
 import { useData } from "../DataContext/DataContext";
 import { useFormik } from "formik";
@@ -59,9 +60,11 @@ export const Step1 = ({ ...props }) => {
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.email && formik.errors.password}
           />
-          <PrimaryButton color={!formik.isValid ? "default" : "primary"}>
-            Дальше
-          </PrimaryButton>
+          {formik.isValid ? (
+            <PrimaryButton>Далее</PrimaryButton>
+          ) : (
+            <DefaultButton>Далее</DefaultButton>
+          )}
         </Form>
         <div className={s["text-box"]}>
           <Typography component="h5" variant="subtitle1">

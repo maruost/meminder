@@ -6,6 +6,7 @@ import { PrimaryButton } from "../../PrimaryButton/PrimaryButton";
 import s from "./profileSettings.module.scss";
 import authData from "../../utils/authData";
 import { settingSchema } from "../schemas";
+import { DefaultButton } from "../../DefaultButton/DefaultButton";
 
 function ProfileSettings({ ...props }) {
   const history = useHistory();
@@ -50,7 +51,6 @@ function ProfileSettings({ ...props }) {
           name="oldPassword"
           value={formik.values.password}
           onChange={formik.handleChange}
-          required
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.email && formik.errors.password}
         />
@@ -61,19 +61,18 @@ function ProfileSettings({ ...props }) {
           name="newPassword"
           value={formik.values.password}
           onChange={formik.handleChange}
-          required
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.email && formik.errors.password}
         />
-        <PrimaryButton size="small">Сохранить изменения</PrimaryButton>
+        {formik.isValid ? (
+          <PrimaryButton>Сохранить изменения</PrimaryButton>
+        ) : (
+          <DefaultButton>Сохранить изменения</DefaultButton>
+        )}
       </form>
-      <PrimaryButton
-        color="default"
-        onClick={handleLogout}
-        className={s["esc-button"]}
-      >
+      <DefaultButton onClick={handleLogout} className={s["esc-button"]}>
         Выйти из аккаунта
-      </PrimaryButton>
+      </DefaultButton>
     </div>
   );
 }

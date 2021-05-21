@@ -12,6 +12,7 @@ $font: "Roboto", Helvetica, Arial, sans-serif;
 
 .signin {
   width: 100%;
+  height: 100%;
   margin: 40px auto;
   text-align: center;
   display: flex;
@@ -34,6 +35,6 @@ $font: "Roboto", Helvetica, Arial, sans-serif;
   color: rgb(159, 159, 165);
   transition: color 0.2s ease-in-out;
   &:hover {
-    color: rgb(39, 39, 126);
+    color: #546e7a;
   }
 }

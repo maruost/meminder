@@ -12,11 +12,13 @@ import { Form } from "../Form/Form";
 import { Input } from "../Input/Input";
 import { MainContainer } from "../MainContainer/MainContainer";
 import { PrimaryButton } from "../PrimaryButton/PrimaryButton";
+import { DefaultButton } from "../DefaultButton/DefaultButton";
 import { useHistory } from "react-router-dom";
 import { useData } from "../DataContext/DataContext";
 import { useFormik } from "formik";
 import s from "./step2.module.scss";
 import { UserInfoSchema } from "./schemas";
+import { Switcher } from "../Switcher/Switcher";
 
 export const Step2 = ({ ...props }) => {
   const history = useHistory();
@@ -57,7 +59,6 @@ export const Step2 = ({ ...props }) => {
             error={formik.touched.firstName && Boolean(formik.errors.firstName)}
             helperText={formik.touched.firstName && formik.errors.firstName}
             size="small"
-            // className={s.input}
           />
           <Input
             id="lastName"
@@ -169,7 +170,7 @@ export const Step2 = ({ ...props }) => {
             />
             <FormControlLabel
               control={
-                <Switch
+                <Switcher
                   checked={
                     formik.values.location ? formik.values.locationToFind : null
                   }
@@ -185,24 +186,24 @@ export const Step2 = ({ ...props }) => {
                     formik.errors.locationToFind
                   }
                   disabled={formik.values.location ? false : true}
-                  color="primary"
                 />
               }
               label="Найти пару в моём городе"
             />
           </div>
-          <PrimaryButton color={!formik.isValid ? "default" : "primary"}>
-            Дальше
-          </PrimaryButton>
-          <PrimaryButton
-            color="default"
+          {formik.isValid ? (
+            <PrimaryButton>Далее</PrimaryButton>
+          ) : (
+            <DefaultButton>Далее</DefaultButton>
+          )}
+          <DefaultButton
             type="button"
             onClick={() => {
               history.goBack();
             }}
           >
             Назад
-          </PrimaryButton>
+          </DefaultButton>
         </Form>
       </MainContainer>
     </div>

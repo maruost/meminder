@@ -79,7 +79,7 @@ function Main({
         ) : null}
       </Backdrop>
       {peopleState.length !== 0 ? (
-        <>
+        <div className={s["cards-box"]}>
           <TinderCards
             people={people}
             onSwiped={onSwiped}
@@ -89,7 +89,7 @@ function Main({
             onHandleOpen={handleOpen}
           />
           <BottomButtons people={people} onSwipe={onSwipe} />
-        </>
+        </div>
       ) : (
         <>
           <div className={s["end"]}>

@@ -5,6 +5,7 @@ import { Form } from "../Form/Form";
 import { Input } from "../Input/Input";
 import { MainContainer } from "../MainContainer/MainContainer";
 import { PrimaryButton } from "../PrimaryButton/PrimaryButton";
+import { DefaultButton } from "../DefaultButton/DefaultButton";
 import { useFormik } from "formik";
 import FakeApi from "../utils/FakeApi";
 import s from "./signIn.module.scss";
@@ -60,9 +61,11 @@ const SignIn = ({ onHandleLogin, ...props }) => {
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.email && formik.errors.password}
           />
-          <PrimaryButton color={!formik.isValid ? "default" : "primary"}>
-            Войти
-          </PrimaryButton>
+          {formik.isValid ? (
+            <PrimaryButton>Войти</PrimaryButton>
+          ) : (
+            <DefaultButton>Войти</DefaultButton>
+          )}
         </Form>
         <div className={s["text-box"]}>
           <Typography component="h5" variant="subtitle1">
