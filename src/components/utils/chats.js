@@ -1,7 +1,8 @@
 import mem13 from "../../static/images/mems/mem13.png";
-import mem6 from "../../static/images/mems/mem6.png";
-import mem8 from "../../static/images/mems/mem8.png";
 import mem18 from "../../static/images/mems/mem18.png";
+import mem20 from "../../static/images/mems/mem20.png";
+import mem21 from "../../static/images/mems/mem21.png";
+import mem24 from "../../static/images/mems/mem24.png";
 
 const chats = [
   {
@@ -68,7 +69,7 @@ const chats = [
     _id: "saaesgwer90",
     firstName: "Артём",
     lastName: "Карпов",
-    avatar: mem6,
+    avatar: mem21,
     messages: [
       {
         creatorId: "saaesgwer90",
@@ -84,10 +85,50 @@ const chats = [
   },
   {
     _id: "iygjfthdr6",
-    firstName: "Анна",
-    lastName: "Тарасова",
-    avatar: mem8,
+    firstName: "Максим",
+    lastName: "Тарасов",
+    avatar: mem24,
     messages: [],
+  },
+  {
+    _id: "pgjfthdrg25",
+    firstName: "Сергей",
+    lastName: "Речной",
+    avatar: mem20,
+    messages: [
+      {
+        creatorId: "ef234padk",
+        timestamp: "04:19",
+        message: "привет. что ищещь здесь?",
+      },
+      {
+        creatorId: "pgjfthdrg25",
+        timestamp: "04:20",
+        message: "знаешь...",
+      },
+      {
+        creatorId: "pgjfthdrg25",
+        timestamp: "04:20",
+        message: "я здесь ищу только одного...",
+      },
+      {
+        creatorId: "pgjfthdrg25",
+        timestamp: "04:20",
+        message:
+          "покоя, умиротворения и вот этой гармонии от слияния с бесконечно вечным. от созерцания           великого фрактального подобия и от вот этого замечательного всеединства существа, бесконечно вечного, куда ни посмотри, хоть вглубь - бесконечно малое, хоть ввысь - бесконечное большое, понимаешь?",
+      },
+      {
+        creatorId: "ef234padk",
+        timestamp: "04:23",
+        message: "не совсем, если честно",
+      },
+      {
+        creatorId: "pgjfthdrg25",
+        timestamp: "04:25",
+        message:
+          "Я как будто бы уже давно глубокий старец, бессмертный, ну или там уже почти бессмертный     который на этой планете от её самого зарождения, ещё когда только Солнце только-только сформировалось как звезда, и вот это газопылевое облако, вот, после взрыва, Солнца, когда оно вспыхнуло, как звезда, начало формировать вот эти коацерваты, планеты, понимаешь, я на этой Земле уже как будто почти пять миллиардов лет живу и знаю её вдоль и поперёк этот весь мир...",
+      },
+    ],
   },
 ];
 
