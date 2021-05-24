@@ -5,7 +5,7 @@ import {
   FormLabel,
   RadioGroup,
   Radio,
-  Switch,
+  FormHelperText,
 } from "@material-ui/core";
 import { React } from "react";
 import { Form } from "../Form/Form";
@@ -87,7 +87,11 @@ export const Step2 = ({ ...props }) => {
             helperText={formik.touched.date && formik.errors.date}
             size="small"
           />
-          <FormControl component="fieldset" fullWidth={true}>
+          <FormControl
+            component="fieldset"
+            fullWidth={true}
+            error={formik.touched.gender && Boolean(formik.errors.gender)}
+          >
             <FormLabel component="legend">Твой пол</FormLabel>
             <RadioGroup
               row
@@ -96,8 +100,6 @@ export const Step2 = ({ ...props }) => {
               value={formik.values.gender || ""}
               onChange={formik.handleChange}
               required
-              error={formik.touched.gender && Boolean(formik.errors.gender)}
-              helperText={formik.touched.gender && formik.errors.gender}
             >
               <FormControlLabel
                 value="female"
@@ -115,8 +117,18 @@ export const Step2 = ({ ...props }) => {
                 label="Другое"
               />
             </RadioGroup>
+            <FormHelperText>
+              {formik.touched.gender && formik.errors.gender}
+            </FormHelperText>
           </FormControl>
-          <FormControl component="fieldset" fullWidth={true}>
+          <FormControl
+            component="fieldset"
+            fullWidth={true}
+            error={
+              formik.touched.searchingGender &&
+              Boolean(formik.errors.searchingGender)
+            }
+          >
             <FormLabel component="legend">Кого ты ищещь?</FormLabel>
             <RadioGroup
               row
@@ -125,13 +137,6 @@ export const Step2 = ({ ...props }) => {
               value={formik.values.searchingGender}
               onChange={formik.handleChange}
               required
-              error={
-                formik.touched.searchingGender &&
-                Boolean(formik.errors.searchingGender)
-              }
-              helperText={
-                formik.touched.searchingGender && formik.errors.searchingGender
-              }
             >
               <FormControlLabel
                 value="female"
@@ -154,6 +159,9 @@ export const Step2 = ({ ...props }) => {
                 label="Пол не важен"
               />
             </RadioGroup>
+            <FormHelperText>
+              {formik.touched.searchingGender && formik.errors.searchingGender}
+            </FormHelperText>
           </FormControl>
           <div className={s.location}>
             <Input
@@ -177,14 +185,6 @@ export const Step2 = ({ ...props }) => {
                   name="locationToFind"
                   value={formik.values.locationToFind}
                   onChange={formik.handleChange}
-                  error={
-                    formik.touched.locationToFind &&
-                    Boolean(formik.errors.locationToFind)
-                  }
-                  helperText={
-                    formik.touched.locationToFind &&
-                    formik.errors.locationToFind
-                  }
                   disabled={formik.values.location ? false : true}
                 />
               }

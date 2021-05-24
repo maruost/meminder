@@ -20,6 +20,7 @@ function Step3({ onHandleLogin, ...props }) {
       files: [],
     },
     onSubmit: (files) => {
+      console.log(files);
       setValues(files);
       console.log(data);
       //send POST request to API with userData and userFiles from dataContext
@@ -31,15 +32,15 @@ function Step3({ onHandleLogin, ...props }) {
         confirmButtonColor: "#00897b",
         iconColor: "#80cbc4",
       }).then(() => {
-        history.push("../signin");
+        history.push("/signin");
       });
     },
   });
 
-  const handleDeleteMeme = (index) => {
+  const handleDeleteMeme = (file) => {
     const values = formik.values.files;
-    values.splice(index, 1);
-    formik.setFieldValue("files", [...values]);
+    const filteredFiles = values.filter((item) => item.id !== file.id);
+    formik.setFieldValue("files", [...filteredFiles]);
   };
 
   return (

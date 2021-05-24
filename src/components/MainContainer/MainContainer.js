@@ -21,7 +21,7 @@ export const MainContainer = ({ children, ...props }) => {
   const styles = useStyles();
 
   return (
-    <Container component="div" maxWidth="s" className={styles.root} {...props}>
+    <Container component="div" maxWidth="sm" className={styles.root} {...props}>
       <Paper className={styles.paper}>{children}</Paper>
     </Container>
   );

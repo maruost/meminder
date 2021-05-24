@@ -31,8 +31,8 @@ let UserInfoSchema = yup.object().shape({
         return moment().diff(moment(value), "years") >= 18;
       }
     ),
-  gender: yup.string().required(),
-  searchingGender: yup.string().required(),
+  gender: yup.string().required("Пожалуйста, заполни это поле"),
+  searchingGender: yup.string().required("Пожалуйста, заполни это поле"),
 });
 
 export { EntryDataSchema, UserInfoSchema };

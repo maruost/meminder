@@ -6,6 +6,30 @@ import { DeleteOutline } from "@material-ui/icons";
 import s from "./dropZone.module.scss";
 import uniqid from "uniqid";
 
+const Item = ({ item, ...props }) => {
+  const handleClick = () => {
+    props.onHandleDeleteMeme(item);
+    console.log(item.preview);
+  };
+
+  return (
+    <ListItem>
+      <img src={item.preview} alt="файл" className={s.preview} />
+      <ListItemText
+        primary={item.name}
+        secondary={`${(item.size / 1000).toFixed(2)}KB`}
+      />
+      <IconButton
+        className={s["delete-btn"]}
+        type="button"
+        onClick={handleClick}
+      >
+        <DeleteOutline />
+      </IconButton>
+    </ListItem>
+  );
+};
+
 function DropZone({
   name,
   setFieldValue,
@@ -24,11 +48,13 @@ function DropZone({
     <div className={s.main}>
       <Dropzone
         multiple={true}
+        maxFiles={9}
         accept="image/jpeg, image/png"
         onDrop={(acceptedFiles) => {
           const filesWithURL = acceptedFiles.map((file) =>
             Object.assign(file, {
               preview: URL.createObjectURL(file),
+              id: uniqid(),
             })
           );
           setFieldValue("files", [...values, ...filesWithURL]);
@@ -43,28 +69,21 @@ function DropZone({
             <p className={s.text}>
               Перетащи изображения сюда или нажми, чтобы выбрать файлы
             </p>
+            <p className={s.notification}>
+              (не более 9 изображений в формате jpeg/png)
+            </p>
           </div>
         )}
       </Dropzone>
       <div className={s.images}>
         <List>
           {values.map((f, index) => (
-            <ListItem key={uniqid()}>
-              <img src={f.preview} alt="файл" className={s.preview} />
-              <ListItemText
-                primary={f.name}
-                secondary={`${(f.size / 1000).toFixed(2)}KB`}
-              />
-              <button
-                className={s["delete-btn"]}
-                type="button"
-                onClick={onHandleDeleteMeme}
-              >
-                <IconButton>
-                  <DeleteOutline />
-                </IconButton>
-              </button>
-            </ListItem>
+            <Item
+              key={f.id}
+              id={f.id}
+              item={f}
+              onHandleDeleteMeme={onHandleDeleteMeme}
+            ></Item>
           ))}
         </List>
       </div>

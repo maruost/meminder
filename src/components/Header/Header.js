@@ -14,7 +14,7 @@ function Header({ backButton, loggedIn, ...props }) {
             Meminder
           </Link>
           <Link to="/">
-            <img className={s.icon} src={logo} alt="meminder icon" s />
+            <img className={s.icon} src={logo} alt="meminder icon" />
           </Link>
           <div className={s["auth-box"]}>
             <NavLink
