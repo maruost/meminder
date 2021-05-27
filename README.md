@@ -1,4 +1,4 @@
-# ![Meminder Logo](https://github.com/maruost/meminder/blob/main/logo-for-readmee.jpg) Meminder
+# ![Meminder Logo](https://github.com/maruost/meminder/blob/main/logo-for-readme.jpg) Meminder
 
 *Дисклеймер: все персонажи и события в данном приложении являются вымышленными, любое сходство с реальностью случайно. В приложении присутствуют сложные (но это не точно) мемы. Take it easy ;)*
 
