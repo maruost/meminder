@@ -4,10 +4,11 @@
 
 ### Meminder - это приложение для знакомств, в котором каждый может найти себе пару, просто свайпая мемы. Загружай любимые мемы, свайпай понравившиеся и находи единомышленников. 
 
-Адрес приложения: https://meminder.netlify.app/ 
-(т.к авторизация существует как заглушка: login: useruser@yandex.ru, пароль: 12345678)
+##### Адрес приложения: https://meminder.netlify.app/ 
+###### (т.к авторизация существует как заглушка: login: useruser@yandex.ru, пароль: 12345678)
 
-preview: ![preview](https://github.com/maruost/meminder/blob/main/preview-meminder.gif)
+###### preview: 
+![preview](https://github.com/maruost/meminder/blob/main/preview-meminder.gif)
 
 ### О pet-проекте: 
 В проекте сделана frontend часть приложения, в которой реализованы: 
