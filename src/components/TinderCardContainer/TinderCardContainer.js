@@ -3,6 +3,8 @@ import TinderCard from "react-tinder-card";
 import s from "./tinderCardContainer.module.scss";
 import CardsCarousel from "../CardsCarousel/CardsCarousel";
 import authData from "../utils/authData";
+import op from "../../static/sounds/op.mp3";
+import zhivem from "../../static/sounds/zhivem.mp3";
 
 function TinderCardContainer({
   person,
@@ -17,6 +19,9 @@ function TinderCardContainer({
   const handleSwiped = (dir) => {
     onSwiped(dir, person.name);
     if (dir === "right") {
+      const audio = new Audio();
+      audio.src = op;
+      audio.autoplay = true;
       const isMatch = person.likes.find((like) => like === authData._id);
       if (isMatch) {
         onHandleMatch(person);
@@ -24,6 +29,10 @@ function TinderCardContainer({
       } else {
         onHandleMatch({});
       }
+    } else if (dir === "left") {
+      const audio = new Audio();
+      audio.src = zhivem;
+      audio.autoplay = true;
     }
 
     //if (dir === "right") {
