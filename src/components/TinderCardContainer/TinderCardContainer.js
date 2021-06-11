@@ -19,9 +19,9 @@ function TinderCardContainer({
   const handleSwiped = (dir) => {
     onSwiped(dir, person.name);
     if (dir === "right") {
-      const audio = new Audio();
-      audio.src = op;
-      audio.autoplay = true;
+      // const audio = new Audio();
+      // audio.src = op;
+      // audio.autoplay = true;
       const isMatch = person.likes.find((like) => like === authData._id);
       if (isMatch) {
         onHandleMatch(person);
@@ -30,9 +30,9 @@ function TinderCardContainer({
         onHandleMatch({});
       }
     } else if (dir === "left") {
-      const audio = new Audio();
-      audio.src = zhivem;
-      audio.autoplay = true;
+      // const audio = new Audio();
+      // audio.src = zhivem;
+      // audio.autoplay = true;
     }
 
     //if (dir === "right") {
